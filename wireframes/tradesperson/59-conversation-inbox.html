@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>12 — Approvals · Ujednano Tradesperson</title>
+<title>59 — WhatsApp Conversations · Ujednano Tradesperson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
@@ -14,8 +14,6 @@ a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,
 :root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--white:#FFFFFF;--soft-white:#F8FAFC;--text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;--text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;--border:#E2E8F0;--hover-row:#F8FAFC;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03);--s-amber:#D97706;--s-green:#059669;--s-red:#DC2626;--s-grey:#64748B}
 .layout{display:flex;height:100vh;overflow:hidden}
 .sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
-.sidebar-logo{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:24px 20px 20px;flex-shrink:0}
-.logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
 .sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
 .sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
 .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
@@ -37,6 +35,7 @@ a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,
 .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:24px}
 .page-title{font-size:26px;font-weight:650;color:#0F172A;letter-spacing:-0.03em;line-height:1.15;margin-bottom:6px}
 .page-subtitle{font-size:14px;color:#475569}
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px}
 .table-card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden}
 table{width:100%;border-collapse:collapse}
 thead{border-bottom:1px solid #E2E8F0}
@@ -46,21 +45,17 @@ tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:#F8FAFC}
 td{padding:0 20px;height:56px;vertical-align:middle}
 .table-footer{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;border-top:1px solid #E2E8F0;font-size:13px;color:#64748B}
-.btn-primary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
-.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:7px}
 .status-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
-
-/* Page-specific */
-.job-name{font-size:13.5px;font-weight:550;color:#0F172A;display:block;line-height:1.3}
-.job-id{font-size:11.5px;color:#94A3B8;display:block;margin-top:2px;font-variant-numeric:tabular-nums}
 .status-cell{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500}
 .teal-link{font-size:13px;color:#00AFA8;font-weight:500;cursor:pointer}
-.actions-cell{display:flex;align-items:center;gap:10px}
-.expires-expired{font-size:13px;color:#DC2626;font-weight:500}
-.expires-normal{font-size:13px;color:#475569}
-.warning-banner{margin-top:20px;background:#FEF3C7;border-left:3px solid #D97706;padding:14px 16px;border-radius:8px;display:flex;align-items:flex-start;gap:10px}
-.warning-text{font-size:13px;color:#92400E;line-height:1.5}
+.grey-link{font-size:13px;color:#CBD5E1;font-weight:500;cursor:default;pointer-events:none}
+.metric-strip{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-radius:12px;box-shadow:var(--card-shadow);margin-bottom:24px;overflow:hidden}
+.metric-cell{padding:20px;border-right:1px solid #E2E8F0}
+.metric-cell:last-child{border-right:none}
+.metric-value{font-size:28px;font-weight:650;color:#073763;font-variant-numeric:tabular-nums;line-height:1.1;margin-bottom:6px}
+.metric-label{font-size:12px;color:#64748B;margin-bottom:6px}
+.metric-indicator{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500}
+.info-banner{border-left:3px solid #00AFA8;background:#F0FDFA;padding:12px 16px;border-radius:4px;margin-bottom:24px;font-size:13.5px;color:#0F172A;line-height:1.5}
 </style>
 </head>
 <body>
@@ -69,7 +64,7 @@ td{padding:0 20px;height:56px;vertical-align:middle}
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div style="padding:22px 20px 16px;flex-shrink:0">
-      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block;max-width:160px;border-radius:4px">
       <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Tradesperson portal</div>
     </div>
     <div class="sidebar-section-label">My workspace</div>
@@ -78,11 +73,12 @@ td{padding:0 20px;height:56px;vertical-align:middle}
         <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
         <span class="nav-label">My Jobs</span>
       </a>
-      <a class="nav-item" href="./59-conversation-inbox.html">
-        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <a class="nav-item active" href="./59-conversation-inbox.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
         <span class="nav-label">Conversations</span>
+        <span class="nav-badge">2</span>
       </a>
-      <a class="nav-item active" href="./12-pending-approvals.html">
+      <a class="nav-item" href="./12-pending-approvals.html">
         <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
         <span class="nav-label">Approvals</span>
         <span class="nav-badge">3</span>
@@ -121,10 +117,44 @@ td{padding:0 20px;height:56px;vertical-align:middle}
   <main class="main">
     <div class="main-content">
 
+      <!-- Header -->
       <div class="page-header">
         <div>
-          <div class="page-title">Approvals</div>
-          <div class="page-subtitle">3 proposals waiting for homeowner decision</div>
+          <div class="page-title">WhatsApp Conversations</div>
+          <div class="page-subtitle">Captured conversations from your connected WhatsApp number</div>
+        </div>
+      </div>
+
+      <!-- Info banner -->
+      <div class="info-banner">
+        Messages from your connected WhatsApp are automatically captured and structured into jobs. Review each conversation below.
+      </div>
+
+      <!-- Stats row -->
+      <div class="metric-strip">
+        <div class="metric-cell">
+          <div class="metric-value">2</div>
+          <div class="metric-label">Pending review</div>
+          <div class="metric-indicator">
+            <span class="status-dot" style="background:#D97706"></span>
+            <span style="color:#D97706">Action needed</span>
+          </div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-value">1</div>
+          <div class="metric-label">Processing</div>
+          <div class="metric-indicator">
+            <span class="status-dot" style="background:#0891B2"></span>
+            <span style="color:#0891B2">In progress</span>
+          </div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-value">14</div>
+          <div class="metric-label">Converted to jobs</div>
+          <div class="metric-indicator">
+            <span class="status-dot" style="background:#059669"></span>
+            <span style="color:#059669">Completed</span>
+          </div>
         </div>
       </div>
 
@@ -133,100 +163,99 @@ td{padding:0 20px;height:56px;vertical-align:middle}
         <table>
           <thead>
             <tr>
-              <th>Job</th>
               <th>Homeowner</th>
-              <th>Price</th>
-              <th>Sent</th>
-              <th>Expires</th>
+              <th>Phone</th>
+              <th>Last message</th>
+              <th>Messages</th>
               <th>Status</th>
-              <th>Actions</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-
-            <!-- Row 1 -->
             <tr>
-              <td>
-                <span class="job-name">Boiler replacement — Vaillant ecoTEC Plus</span>
-                <span class="job-id">UJD-00847</span>
-              </td>
-              <td style="color:#475569;font-size:13.5px">Marie Dvořáková</td>
-              <td style="font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:500;color:#073763">48 500 Kč</td>
-              <td style="font-size:13px;color:#475569">11 Jun, 14:15</td>
-              <td class="expires-normal">13 Jun, 14:15</td>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Jana Procházková</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 601 111 222</td>
+              <td style="font-size:13px;color:#475569">Today, 14:32</td>
+              <td style="font-size:13px;color:#475569">12 messages</td>
               <td>
                 <div class="status-cell">
                   <span class="status-dot" style="background:#D97706"></span>
-                  <span style="color:#D97706">Awaiting</span>
+                  <span style="color:#D97706">Needs review</span>
                 </div>
               </td>
-              <td>
-                <div class="actions-cell">
-                  <button class="btn-primary btn-sm">Resend link</button>
-                  <a href="./10-job-detail.html" class="teal-link">Open job</a>
-                </div>
-              </td>
+              <td><a href="./60-conversation-detail.html" class="teal-link">Review</a></td>
             </tr>
-
-            <!-- Row 2 -->
             <tr>
-              <td>
-                <span class="job-name">Roof repair — 40m² tiles</span>
-                <span class="job-id">UJD-00831</span>
-              </td>
-              <td style="color:#475569;font-size:13.5px">Lucie Marková</td>
-              <td style="font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:500;color:#073763">89 200 Kč</td>
-              <td style="font-size:13px;color:#475569">9 Jun, 11:20</td>
-              <td class="expires-expired">Expired</td>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Martin Kovář</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 602 333 444</td>
+              <td style="font-size:13px;color:#475569">Today, 09:15</td>
+              <td style="font-size:13px;color:#475569">8 messages</td>
               <td>
                 <div class="status-cell">
-                  <span class="status-dot" style="background:#DC2626"></span>
-                  <span style="color:#DC2626">Link expired</span>
+                  <span class="status-dot" style="background:#D97706"></span>
+                  <span style="color:#D97706">Needs review</span>
                 </div>
               </td>
-              <td>
-                <div class="actions-cell">
-                  <button class="btn-primary btn-sm">Resend link</button>
-                  <a href="./10-job-detail.html" class="teal-link">Open job</a>
-                </div>
-              </td>
+              <td><a href="./60-conversation-detail.html" class="teal-link">Review</a></td>
             </tr>
-
-            <!-- Row 3 -->
             <tr>
-              <td>
-                <span class="job-name">Bathroom renovation</span>
-                <span class="job-id">UJD-00812</span>
-              </td>
-              <td style="color:#475569;font-size:13.5px">Jana Horáčková</td>
-              <td style="font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:500;color:#073763">215 000 Kč</td>
-              <td style="font-size:13px;color:#475569">7 Jun, 09:00</td>
-              <td class="expires-expired">Expired</td>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Petra Nováková</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 603 555 666</td>
+              <td style="font-size:13px;color:#475569">Yesterday</td>
+              <td style="font-size:13px;color:#475569">5 messages</td>
               <td>
                 <div class="status-cell">
-                  <span class="status-dot" style="background:#DC2626"></span>
-                  <span style="color:#DC2626">Link expired</span>
+                  <span class="status-dot" style="background:#0891B2"></span>
+                  <span style="color:#0891B2">Processing</span>
                 </div>
               </td>
-              <td>
-                <div class="actions-cell">
-                  <button class="btn-primary btn-sm">Resend link</button>
-                  <a href="./10-job-detail.html" class="teal-link">Open job</a>
-                </div>
-              </td>
+              <td><span class="grey-link">View</span></td>
             </tr>
-
+            <tr>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Tomáš Blaha</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 604 777 888</td>
+              <td style="font-size:13px;color:#475569">11 Jun 2026</td>
+              <td style="font-size:13px;color:#475569">19 messages</td>
+              <td>
+                <div class="status-cell">
+                  <span class="status-dot" style="background:#059669"></span>
+                  <span style="color:#059669">Job created</span>
+                </div>
+              </td>
+              <td><a href="./10-job-detail.html" class="teal-link">View job</a></td>
+            </tr>
+            <tr>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Eva Šimůnková</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 605 999 000</td>
+              <td style="font-size:13px;color:#475569">10 Jun 2026</td>
+              <td style="font-size:13px;color:#475569">7 messages</td>
+              <td>
+                <div class="status-cell">
+                  <span class="status-dot" style="background:#059669"></span>
+                  <span style="color:#059669">Job created</span>
+                </div>
+              </td>
+              <td><a href="./10-job-detail.html" class="teal-link">View job</a></td>
+            </tr>
+            <tr>
+              <td style="font-size:13.5px;font-weight:550;color:#0F172A">Radek Dvořák</td>
+              <td style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">+420 606 111 333</td>
+              <td style="font-size:13px;color:#475569">9 Jun 2026</td>
+              <td style="font-size:13px;color:#475569">11 messages</td>
+              <td>
+                <div class="status-cell">
+                  <span class="status-dot" style="background:#059669"></span>
+                  <span style="color:#059669">Job created</span>
+                </div>
+              </td>
+              <td><a href="./10-job-detail.html" class="teal-link">View job</a></td>
+            </tr>
           </tbody>
         </table>
         <div class="table-footer">
-          <span>3 pending &mdash; 2 expired</span>
+          <span>Showing 6 of 17 conversations</span>
+          <a href="#" style="color:#00AFA8;font-size:13px;font-weight:500">Load more</a>
         </div>
-      </div>
-
-      <!-- Warning banner -->
-      <div class="warning-banner">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span class="warning-text">2 approval links have expired. The homeowner cannot approve or decline until you resend. Resending generates a new link valid for 72 hours.</span>
       </div>
 
     </div>
