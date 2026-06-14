@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>11 — New Job · Ujednano Tradesperson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--white:#FFFFFF;--soft-white:#F8FAFC;--text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;--text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;--border:#E2E8F0;--hover-row:#F8FAFC;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03);--s-amber:#D97706;--s-green:#059669;--s-red:#DC2626;--s-grey:#64748B}
+.layout{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+.sidebar-logo{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:24px 20px 20px;flex-shrink:0}
+.logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
+.sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.nav-item.active{color:#00AFA8}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+.nav-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:18px;height:18px}
+.nav-label{flex:1;white-space:nowrap}
+.nav-badge{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.60)}
+.sidebar-divider{height:1px;background:rgba(255,255,255,0.06);margin:12px 0;flex-shrink:0}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+.user-bell{flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+.main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+.main-content{padding:36px 40px 48px}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:24px}
+.page-title{font-size:26px;font-weight:650;color:#0F172A;letter-spacing:-0.03em;line-height:1.15;margin-bottom:6px}
+.page-subtitle{font-size:14px;color:#475569}
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:28px;max-width:760px}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+.btn-secondary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:10px;white-space:nowrap;cursor:pointer;font-family:inherit;transition:border-color 120ms}
+.btn-secondary:hover{border-color:#c4cdd8}
+.form-label{font-size:13px;font-weight:550;color:#1E293B;margin-bottom:6px;display:block}
+.form-input{width:100%;height:40px;padding:0 12px;font-size:14px;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:8px;outline:none;transition:border-color 150ms,box-shadow 150ms}
+.form-input:focus{border-color:#073763;box-shadow:0 0 0 3px rgba(7,55,99,0.08)}
+.form-select{width:100%;height:40px;padding:0 36px 0 12px;font-size:14px;color:#1E293B;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;border:1px solid #E2E8F0;border-radius:8px;outline:none;appearance:none;cursor:pointer}
+.form-textarea{width:100%;min-height:88px;padding:12px;font-size:14px;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:8px;outline:none;resize:vertical;line-height:1.5}
+.form-textarea:focus{border-color:#073763;box-shadow:0 0 0 3px rgba(7,55,99,0.08)}
+
+/* Page-specific */
+.card-title{font-size:15px;font-weight:600;color:#0F172A;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-group{display:flex;flex-direction:column}
+.field-group.span-2{grid-column:1/-1}
+.form-divider{height:1px;background:#E2E8F0;margin:20px 0}
+.approval-section-title{font-size:14px;font-weight:600;color:#0F172A;margin-bottom:12px}
+.toggle-row{display:flex;gap:16px}
+.toggle-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:#1E293B}
+.toggle{width:38px;height:22px;border-radius:11px;position:relative;flex-shrink:0;cursor:pointer}
+.toggle.on{background:#00AFA8}
+.toggle.off{background:#CBD5E1}
+.toggle::after{content:'';position:absolute;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:left 150ms}
+.toggle.on::after{left:19px}
+.toggle.off::after{left:3px}
+.info-box{background:#F0FFFE;border-left:2px solid #00AFA8;padding:12px 14px;border-radius:8px;margin:16px 0;display:flex;align-items:flex-start;gap:8px}
+.info-box-text{font-size:12px;color:#0891B2;line-height:1.5}
+.form-actions{display:flex;gap:10px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Tradesperson portal</div>
+    </div>
+    <div class="sidebar-section-label">My workspace</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="./09-jobs-list.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+        <span class="nav-label">My Jobs</span>
+      </a>
+      <a class="nav-item" href="./12-pending-approvals.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="nav-label">Approvals</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="./13-evidence-packs.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+        <span class="nav-label">Evidence Packs</span>
+      </a>
+      <a class="nav-item" href="./14-trust-passport.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+        <span class="nav-label">Trust Passport</span>
+      </a>
+      <a class="nav-item" href="./15-my-channels.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span class="nav-label">My Channels</span>
+      </a>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="./16-profile-settings.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span class="nav-label">Profile</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JN</div>
+      <div class="user-info">
+        <span class="user-name">Jan Novotný</span>
+        <span class="user-firm">Novotný Instalatérství s.r.o.</span>
+      </div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-content">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">New job</div>
+          <div class="page-subtitle">Create a job record manually or paste forwarded message content</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Job details</div>
+
+        <div class="form-grid">
+
+          <!-- Left column -->
+          <div class="field-group">
+            <label class="form-label">Homeowner name *</label>
+            <input class="form-input" type="text" placeholder="Marie Dvořáková"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Price (Kč) *</label>
+            <input class="form-input" type="number" placeholder="48500"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Homeowner phone *</label>
+            <input class="form-input" type="tel" placeholder="+420 722 481 902"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Estimated timeline</label>
+            <input class="form-input" type="text" placeholder="e.g. 3 working days"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Homeowner email</label>
+            <input class="form-input" type="email" placeholder="marie@email.cz"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Location</label>
+            <input class="form-input" type="text" placeholder="Praha 2"/>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Scope of work *</label>
+            <textarea class="form-textarea" rows="4" placeholder="Describe what you will do"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="form-label">Channel</label>
+            <select class="form-select">
+              <option>Dashboard manual</option>
+              <option>WhatsApp</option>
+              <option>SMS</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Full-width paste area -->
+        <div class="field-group" style="margin-top:16px">
+          <label class="form-label">Paste original message (optional)</label>
+          <textarea class="form-textarea" rows="3" placeholder="Paste the original message from your WhatsApp conversation with the homeowner. Ujednano will extract the details automatically."></textarea>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="approval-section-title">Approval settings</div>
+        <div class="toggle-row">
+          <label class="toggle-item">
+            <div class="toggle on"></div>
+            Send approval link immediately
+          </label>
+          <label class="toggle-item">
+            <div class="toggle on"></div>
+            Send PDF summary when approved
+          </label>
+        </div>
+
+        <div class="info-box">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="info-box-text">After saving, Ujednano will extract the job details and send an approval link to the homeowner via WhatsApp or SMS.</span>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="window.location.href='./09-jobs-list.html'">Cancel</button>
+          <button class="btn-primary" onclick="window.location.href='./10-job-detail.html'">Save and send approval</button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

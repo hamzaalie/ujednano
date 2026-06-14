@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Identity Resolution — Review — Ujednano Operator Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#073763;--navy-dark:#042647;--teal:#00AFA8;
+  --white:#FFFFFF;--soft-white:#F8FAFC;
+  --text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;
+  --text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;
+  --border:#E2E8F0;--hover-row:#F8FAFC;--hover-ui:#F1F5F9;
+  --s-amber:#D97706;--s-green:#059669;--s-cyan:#0891B2;
+  --s-purple:#7C3AED;--s-grey:#64748B;--s-red:#DC2626;
+  --sidebar-w:260px;
+  --card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)
+}
+body{font-family:'Inter',sans-serif;font-size:14px;color:var(--text-800);background:var(--soft-white);-webkit-font-smoothing:antialiased}
+.layout{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--navy-dark);display:flex;flex-direction:column;height:100vh;flex-shrink:0}
+.sidebar-nav{flex:1;overflow-y:auto;padding:16px 0}
+.nav-section-label{font-size:9.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 20px 6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:rgba(255,255,255,0.58);font-size:13.5px;font-weight:450;position:relative;transition:color 0.15s,background 0.15s;text-decoration:none;user-select:none}
+.nav-item:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04)}
+.nav-item.active{color:var(--teal)}
+.nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:22px;background:var(--teal);border-radius:0 2px 2px 0}
+.nav-item svg{flex-shrink:0;opacity:0.75}
+.nav-item.active svg{opacity:1}
+.nav-badge{margin-left:auto;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-radius:10px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.nav-item.active .nav-badge{color:var(--teal);background:rgba(0,175,168,0.15)}
+.sidebar-user{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:12px}
+.avatar{width:34px;height:34px;border-radius:50%;background:rgba(0,175,168,0.22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:650;color:var(--teal);flex-shrink:0;letter-spacing:0.02em}
+.sidebar-user-info{min-width:0}
+.sidebar-user-name{font-size:13px;font-weight:550;color:rgba(255,255,255,0.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-user-firm{font-size:11px;color:rgba(255,255,255,0.32);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;background:var(--soft-white)}
+.main-inner{padding:36px 40px 48px}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text-400);margin-bottom:18px;flex-wrap:wrap}
+.breadcrumb a{color:var(--text-500);text-decoration:none;font-weight:450}
+.breadcrumb a:hover{color:var(--teal)}
+.breadcrumb-sep{color:var(--text-300)}
+.breadcrumb-current{color:var(--text-700,var(--text-800));font-weight:500}
+
+/* PAGE HEADER */
+.page-header{margin-bottom:24px}
+.page-title{font-size:26px;font-weight:650;letter-spacing:-0.03em;color:var(--text-900)}
+.page-subtitle{font-size:14px;color:var(--text-500);margin-top:4px;font-weight:400}
+
+/* ALERT CARD */
+.alert-card{background:var(--white);border-radius:10px;box-shadow:var(--card-shadow);border:1px solid var(--border);border-left:3px solid var(--s-amber);padding:18px 22px;display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.alert-card-icon{flex-shrink:0;color:var(--s-amber);margin-top:1px}
+.alert-card-title{font-size:13.5px;font-weight:600;color:var(--text-900);margin-bottom:5px}
+.alert-card-text{font-size:13px;color:var(--text-600);line-height:1.65}
+
+/* COMPARISON CARD */
+.comparison-card{background:var(--white);border-radius:10px;box-shadow:var(--card-shadow);border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.comparison-header{padding:16px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.comparison-header-title{font-size:15px;font-weight:600;color:var(--text-900)}
+.comparison-columns{display:grid;grid-template-columns:1fr 1px 1fr}
+.col-divider{background:var(--border)}
+.comparison-col{padding:24px 28px}
+.col-label{font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-400);margin-bottom:18px}
+.field-row{margin-bottom:16px}
+.field-row:last-child{margin-bottom:0}
+.field-label{font-size:11.5px;font-weight:550;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-400);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.field-value{font-size:14px;color:var(--text-800);font-weight:450;display:flex;align-items:center;gap:8px}
+.field-value.empty{color:var(--text-400);font-style:italic;font-size:13px}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+.dot-green{background:var(--s-green)}
+.dot-amber{background:var(--s-amber)}
+.dot-red{background:var(--s-red)}
+.dot-grey{background:var(--s-grey)}
+
+/* MATCH LEGEND */
+.match-legend{display:flex;align-items:center;gap:16px;padding:12px 22px;background:var(--soft-white);border-top:1px solid var(--border)}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text-500)}
+
+/* ACTIVITY CARD */
+.section-card{background:var(--white);border-radius:10px;box-shadow:var(--card-shadow);border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.section-card-header{padding:16px 22px 14px;border-bottom:1px solid var(--border)}
+.section-card-title{font-size:15px;font-weight:600;color:var(--text-900)}
+.activity-cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.activity-col{padding:20px 24px}
+.activity-col+.activity-col{border-left:1px solid var(--border)}
+.activity-col-label{font-size:12px;font-weight:600;color:var(--text-600);margin-bottom:12px}
+.activity-count{font-size:22px;font-weight:650;color:var(--text-900);font-variant-numeric:tabular-nums;margin-bottom:12px}
+.activity-count span{font-size:13px;font-weight:400;color:var(--text-400);margin-left:3px}
+
+/* SMALL TABLE */
+.mini-table{width:100%;border-collapse:collapse}
+.mini-table thead th{font-size:10.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-400);padding:0 0 7px;text-align:left;border-bottom:1px solid var(--border)}
+.mini-table tbody tr{border-bottom:1px solid var(--border)}
+.mini-table tbody tr:last-child{border-bottom:none}
+.mini-table td{padding:8px 0;font-size:12.5px;color:var(--text-600);vertical-align:middle}
+.mini-table td:last-child{color:var(--text-400);font-size:12px;font-variant-numeric:tabular-nums;text-align:right}
+
+/* DECISION CARD */
+.decision-card{background:var(--white);border-radius:10px;box-shadow:var(--card-shadow);border:1px solid var(--border);padding:24px 28px;margin-bottom:20px}
+.decision-title{font-size:15px;font-weight:600;color:var(--text-900);margin-bottom:6px}
+.decision-sub{font-size:13px;color:var(--text-500);margin-bottom:22px;line-height:1.6}
+.decision-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:0 18px;height:38px;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background 0.15s,box-shadow 0.15s,color 0.15s;text-decoration:none;white-space:nowrap}
+.btn-teal{background:var(--teal);color:var(--white)}
+.btn-teal:hover{background:#009990}
+.btn-outline-navy{background:var(--white);color:var(--navy);border:1.5px solid var(--navy)}
+.btn-outline-navy:hover{background:#EEF3F9}
+.btn-outline-amber{background:var(--white);color:var(--s-amber);border:1.5px solid var(--s-amber)}
+.btn-outline-amber:hover{background:#FFFBF0}
+.cancel-link{font-size:13px;color:var(--text-400);text-decoration:none;margin-left:8px;font-weight:450}
+.cancel-link:hover{color:var(--text-700,var(--text-800))}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.07)">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Operator console</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Workspace</div>
+
+      <a class="nav-item" href="../../designs/operator-dashboard-jobs.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Jobs
+      </a>
+      <a class="nav-item" href="./20-approval-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Approval queue
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item active" href="./21-identity-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Identity resolution
+      </a>
+
+      <div class="nav-section-label">Tools</div>
+
+      <a class="nav-item" href="./22-correction-tool.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Correction tool
+      </a>
+      <a class="nav-item" href="./23-evidence-export.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Evidence export
+      </a>
+      <a class="nav-item" href="./44-dispute-management.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Disputes
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="./27-search.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+
+      <div class="nav-section-label">System</div>
+
+      <a class="nav-item" href="./24-trust-summary.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Trust summary
+      </a>
+      <a class="nav-item" href="./25-m12-verification-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        M12 verification
+      </a>
+      <a class="nav-item" href="./46-operator-settings.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="avatar">KN</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Karel Novák</div>
+        <div class="sidebar-user-firm">Ujednano Operations s.r.o.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- BREADCRUMB -->
+      <div class="breadcrumb">
+        <span>Operator</span>
+        <span class="breadcrumb-sep">›</span>
+        <a href="./21-identity-queue.html">Identity Resolution</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Review #IR-0047</span>
+      </div>
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div class="page-title">Identity Resolution — Review</div>
+        <div class="page-subtitle">Case #IR-0047 &middot; Opened 2026-06-12 &middot; Unresolved</div>
+      </div>
+
+      <!-- CONFLICT ALERT -->
+      <div class="alert-card">
+        <div class="alert-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div>
+          <div class="alert-card-title">Possible duplicate detected</div>
+          <div class="alert-card-text">Two records share the same phone number but have different names and emails. Review both records before deciding.</div>
+        </div>
+      </div>
+
+      <!-- COMPARISON CARD -->
+      <div class="comparison-card">
+        <div class="comparison-header">
+          <div class="comparison-header-title">Record comparison</div>
+          <div style="font-size:12px;color:var(--text-400)">Field-level match indicators shown per row</div>
+        </div>
+
+        <div class="comparison-columns">
+          <!-- RECORD A -->
+          <div class="comparison-col">
+            <div class="col-label">Record A</div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-amber"></span>
+                Name
+              </div>
+              <div class="field-value">Jan Novák</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-green"></span>
+                Phone
+              </div>
+              <div class="field-value">+420 777 000 001</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-red"></span>
+                Email
+              </div>
+              <div class="field-value">jan.novak@email.cz</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-grey"></span>
+                Company
+              </div>
+              <div class="field-value">Novák Stavby s.r.o.</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label" style="gap:0">Created</div>
+              <div class="field-value" style="color:var(--text-500);font-size:13px">2026-02-14</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label" style="gap:0">Source</div>
+              <div class="field-value" style="color:var(--text-500);font-size:13px">WhatsApp</div>
+            </div>
+          </div>
+
+          <!-- DIVIDER -->
+          <div class="col-divider"></div>
+
+          <!-- RECORD B -->
+          <div class="comparison-col">
+            <div class="col-label">Record B</div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-amber"></span>
+                Name
+              </div>
+              <div class="field-value">J. Novak</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-green"></span>
+                Phone
+              </div>
+              <div class="field-value">+420 777 000 001</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-red"></span>
+                Email
+              </div>
+              <div class="field-value">novak.jan@gmail.com</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label">
+                <span class="status-dot dot-grey"></span>
+                Company
+              </div>
+              <div class="field-value empty">— not provided</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label" style="gap:0">Created</div>
+              <div class="field-value" style="color:var(--text-500);font-size:13px">2026-03-22</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-label" style="gap:0">Source</div>
+              <div class="field-value" style="color:var(--text-500);font-size:13px">SMS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MATCH LEGEND -->
+        <div class="match-legend">
+          <div class="legend-item">
+            <span class="status-dot dot-green"></span>
+            Match
+          </div>
+          <div class="legend-item">
+            <span class="status-dot dot-amber"></span>
+            Partial match
+          </div>
+          <div class="legend-item">
+            <span class="status-dot dot-red"></span>
+            Mismatch
+          </div>
+          <div class="legend-item">
+            <span class="status-dot dot-grey"></span>
+            Only one record has this field
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY SUMMARY -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Activity summary</div>
+        </div>
+        <div class="activity-cols">
+          <!-- RECORD A ACTIVITY -->
+          <div class="activity-col">
+            <div class="activity-col-label">Record A — Jan Novák</div>
+            <div class="activity-count">7 <span>events</span></div>
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th style="text-align:right">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Job created (UJD-00712)</td>
+                  <td>2026-02-14</td>
+                </tr>
+                <tr>
+                  <td>Message received</td>
+                  <td>2026-02-21</td>
+                </tr>
+                <tr>
+                  <td>Quote sent</td>
+                  <td>2026-03-01</td>
+                </tr>
+                <tr>
+                  <td>Job accepted</td>
+                  <td>2026-03-04</td>
+                </tr>
+                <tr>
+                  <td>Completion confirmed</td>
+                  <td>2026-04-11</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- RECORD B ACTIVITY -->
+          <div class="activity-col">
+            <div class="activity-col-label">Record B — J. Novak</div>
+            <div class="activity-count">2 <span>events</span></div>
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th style="text-align:right">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Record created via SMS</td>
+                  <td>2026-03-22</td>
+                </tr>
+                <tr>
+                  <td>Message received</td>
+                  <td>2026-04-08</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DECISION SECTION -->
+      <div class="decision-card">
+        <div class="decision-title">Operator decision</div>
+        <div class="decision-sub">Choose an action below. Your decision will be logged with a timestamp and your operator ID. Merging records cannot be undone without administrator access.</div>
+        <div class="decision-actions">
+          <button class="btn btn-teal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Mark as same person
+          </button>
+          <button class="btn btn-outline-navy">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Keep as separate
+          </button>
+          <button class="btn btn-outline-amber">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Escalate for review
+          </button>
+          <a class="cancel-link" href="./21-identity-queue.html">Cancel</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

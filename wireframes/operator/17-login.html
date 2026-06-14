@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — Ujednano Operator Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #073763;
+      --navy-dark: #042647;
+      --teal: #00AFA8;
+      --white: #FFFFFF;
+      --soft-white: #F8FAFC;
+      --text-900: #0F172A;
+      --text-800: #1E293B;
+      --text-600: #475569;
+      --text-500: #64748B;
+      --text-400: #94A3B8;
+      --text-300: #CBD5E1;
+      --border: #E2E8F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--text-900);
+      background: var(--soft-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    input { font-family: inherit; }
+
+    body {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      min-height: 100vh;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .card-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-wordmark {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .operator-badge {
+      display: inline-block;
+      background: var(--navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 550;
+      letter-spacing: 0.01em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+
+    .card-heading {
+      font-size: 22px;
+      font-weight: 650;
+      color: var(--text-900);
+      text-align: center;
+      margin-top: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .form-group {
+      margin-top: 20px;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 550;
+      color: var(--text-800);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-800);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 150ms, box-shadow 150ms;
+    }
+
+    .form-input:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(7,55,99,0.08);
+    }
+
+    .forgot-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 450;
+      transition: opacity 120ms;
+    }
+
+    .forgot-link:hover { opacity: 0.75; }
+
+    .btn-signin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background: var(--navy);
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(7,55,99,0.14);
+      margin-top: 24px;
+      transition: transform 150ms, box-shadow 150ms;
+    }
+
+    .btn-signin:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(7,55,99,0.2);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .card-footer {
+      font-size: 13px;
+      color: var(--text-500);
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="card-logo">
+      <div class="logo-row">
+        <img src="../assets/logos/ujednano_horizontal_logo_white_on_transparent.png" alt="Ujednano" height="30" style="display:block">
+      </div>
+      <span class="operator-badge">Operator console</span>
+    </div>
+
+    <h1 class="card-heading">Sign in</h1>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email address</label>
+      <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+      <div class="forgot-row">
+        <a class="forgot-link" href="../shared/49-forgot-password.html">Forgot password?</a>
+      </div>
+    </div>
+
+    <button class="btn-signin" type="button" onclick="window.location.href='../../designs/operator-dashboard-jobs.html'">Sign in</button>
+
+    <div class="divider"></div>
+
+    <p class="card-footer">For access issues, contact your system administrator.</p>
+  </div>
+</body>
+</html>

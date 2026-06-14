@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ujednano — Přezkum zahájen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #073763;
+      --teal: #00AFA8;
+      --white: #FFFFFF;
+      --soft-white: #F8FAFC;
+      --text-900: #0F172A;
+      --text-800: #1E293B;
+      --text-600: #475569;
+      --text-500: #64748B;
+      --text-400: #94A3B8;
+      --border: #E2E8F0;
+      --hover-ui: #F1F5F9;
+      --s-amber: #D97706;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--soft-white);
+      color: var(--text-800);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+    .mobile-logo { display: flex; align-items: center; gap: 8px; }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+
+    .icon-circle-teal {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(0,175,168,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-heading {
+      font-size: 20px;
+      font-weight: 650;
+      color: var(--text-900);
+      letter-spacing: -0.02em;
+      margin-top: 16px;
+      max-width: 300px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .ref-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ref-row:first-child { padding-top: 0; }
+    .ref-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .ref-label { font-size: 13px; color: var(--text-500); font-weight: 450; }
+    .ref-value { font-size: 13px; font-weight: 550; color: var(--text-800); text-align: right; }
+
+    /* Progress card */
+    .progress-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .progress-label-row span { font-size: 13px; color: var(--text-500); }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      width: 5%;
+      height: 100%;
+      background: var(--teal);
+      border-radius: 3px;
+    }
+    .progress-note {
+      font-size: 12px;
+      color: var(--text-400);
+      margin-top: 8px;
+    }
+
+    /* Amber info box */
+    .info-amber {
+      background: #FEF3C7;
+      border-left: 3px solid var(--s-amber);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .info-amber svg { flex-shrink: 0; margin-top: 1px; }
+    .info-amber p { font-size: 13px; color: #92400E; line-height: 1.55; }
+
+    /* Buttons */
+    .btn-primary-navy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 550;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 1px 2px rgba(7,55,99,0.14);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      background: var(--white);
+      color: var(--text-800);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 550;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-group { display: flex; flex-direction: column; gap: 10px; }
+
+    /* Footer */
+    .mobile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 32px;
+    }
+    .mobile-footer span { font-size: 11px; color: var(--text-400); }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header class="mobile-header">
+      <div class="mobile-logo">
+        <img src="../assets/logos/ujednano_horizontal_logo_transparent.png" alt="Ujednano" height="22" style="display:block">
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="icon-circle-teal">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <h1 class="hero-heading">Vaše žádost o přezkum je potvrzena</h1>
+    </div>
+
+    <!-- Reference card -->
+    <div class="card">
+      <div class="ref-row">
+        <span class="ref-label">Číslo přezkumu</span>
+        <span class="ref-value">UJD-REV-2025-00312</span>
+      </div>
+      <div class="ref-row">
+        <span class="ref-label">Typ přezkumu</span>
+        <span class="ref-value">Standardní (24 hodin)</span>
+      </div>
+      <div class="ref-row">
+        <span class="ref-label">Odhadované dokončení</span>
+        <span class="ref-value">12. 6. 2025, 14:32 SELČ</span>
+      </div>
+    </div>
+
+    <!-- Progress card -->
+    <div class="card">
+      <div class="progress-label-row">
+        <span>Průběh přezkumu</span>
+        <span>5%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-note">Přezkum byl zahájen</div>
+    </div>
+
+    <!-- Amber warning -->
+    <div class="info-amber">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <p>Stále se můžete rozhodnout — kdykoli můžete návrh schválit nebo odmítnout, i v průběhu přezkumu.</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-group">
+      <button class="btn-primary-navy">Schválit nyní</button>
+      <button class="btn-secondary">Zpět na návrh</button>
+    </div>
+
+    <footer class="mobile-footer">
+      <span>Powered by</span>
+      <img src="../assets/logos/ujednano_horizontal_logo_mono_navy_transparent.png" alt="Ujednano" height="13" style="display:block;opacity:0.55">
+    </footer>
+
+  </div>
+</body>
+</html>

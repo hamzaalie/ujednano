@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Wireframe Index — Ujednano V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,select{font-family:inherit}
+:root{--navy:#073763;--teal:#00AFA8;--border:#E2E8F0;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 20px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:transform 150ms;text-decoration:none}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 20px;font-size:14px;font-weight:500;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:10px;cursor:pointer;font-family:inherit;text-decoration:none}
+.btn-teal{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 20px;font-size:14px;font-weight:500;color:#fff;background:#00AFA8;border:none;border-radius:10px;cursor:pointer;font-family:inherit;text-decoration:none}
+.screen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;margin-bottom:32px}
+</style>
+</head>
+<body>
+<div style="background:#F8FAFC;min-height:100vh;padding-bottom:60px">
+  <div style="max-width:1000px;margin:0 auto;padding:40px 24px">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px">
+      <div style="display:inline-flex;align-items:center">
+        <img src="./assets/logos/ujednano_horizontal_logo_transparent.png" alt="Ujednano" height="32" style="display:block">
+      </div>
+      <div style="height:20px;width:1px;background:#E2E8F0;margin:0 4px"></div>
+      <span style="font-size:14px;font-weight:500;color:#64748B">Wireframe Index</span>
+    </div>
+
+    <!-- Subtitle -->
+    <div style="font-size:13px;color:#94A3B8;margin-top:6px;margin-bottom:24px">59 screens &middot; 6 groups &middot; Ujednano V2 Design System</div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:#E2E8F0;margin-bottom:32px"></div>
+
+    <!-- Group 1 — Homeowner -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">Homeowner</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">9 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./homeowner/01-approval-page.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">01</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Approval page</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/02-confirmation.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">02</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Approval confirmed</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/02b-decline-confirmation.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;flex-shrink:0">02b</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Decline confirmation</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/03-review-awaiting.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">03</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Review awaiting</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/04-review-decision.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">04</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Review decision</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/05-revision-requested.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">05</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Revision requested</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/06-link-expired.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">06</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Link expired</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/07-already-decided.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">07</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Already decided</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./homeowner/56-handover-notification.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">56</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Handover notification</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Group 2 — Tradesperson Portal -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">Tradesperson Portal</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">13 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./tradesperson/08-login.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">08</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Login</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/09-jobs-list.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">09</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">My jobs</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/10-job-detail.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">10</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Job detail + timeline</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/11-new-job.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">11</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">New job form</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/12-pending-approvals.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">12</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Pending approvals</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/13-evidence-packs.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">13</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Evidence packs</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/14-trust-passport.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">14</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Trust passport</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/15-my-channels.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">15</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">My channels</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/16-profile-settings.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">16</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Profile &amp; settings</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/48-registration.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">48</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Registration</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/50-upload-progress.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">50</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Upload progress update</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/51-record-handover.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">51</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Record handover</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./tradesperson/57-revised-proposal.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">57</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Revised proposal form</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Group 3 — Operator Console -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">Operator Console</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">16 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./operator/17-login.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">17</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Login</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="../designs/operator-dashboard-jobs.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">18</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Jobs overview (Approved)</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/19-job-detail-timeline.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">19</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Job detail + timeline</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/20-approval-queue.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">20</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Approval queue</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/21-identity-queue.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">21</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Identity resolution</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/22-correction-tool.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">22</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Correction tool</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/23-evidence-export.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">23</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Evidence export</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/24-trust-summary.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">24</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Trust summary</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/25-m12-verification-queue.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">25</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">M12 verification queue</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/26-m12-review-detail.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">26</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">M12 review detail</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/27-search.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">27</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Search</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/44-dispute-management.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">44</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Dispute management</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/45-dispute-resolution.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">45</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Dispute resolution form</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/46-operator-settings.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">46</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Operator settings</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/55-identity-detail.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">55</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Identity review detail</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./operator/58-manual-ingestion.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">58</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Manual ingestion</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Group 4 — Reviewer Console -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">Reviewer Console</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">5 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./reviewer/28-assigned-reviews.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">28</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Assigned reviews</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./reviewer/29-review-detail.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">29</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Review detail</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./reviewer/30-report-form.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">30</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Report form</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./reviewer/31-submitted-confirmation.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">31</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Submitted confirmation</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./reviewer/47-addendum.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">47</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Submit addendum</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Group 5 — Admin Panel -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">Admin Panel</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">8 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./admin/32-firm-management.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">32</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Firm management</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/33-user-management.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">33</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">User management</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/34-reviewer-pool.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">34</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Reviewer pool</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/35-platform-config.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">35</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Platform configuration</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/36-system-health.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">36</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">System health</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/52-firm-detail.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">52</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Firm detail</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/53-add-edit-user.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">53</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Add / Edit user</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./admin/54-add-edit-reviewer.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">54</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Add / Edit reviewer</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Group 6 — System / Shared -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:16px;font-weight:600;color:#0F172A">System / Shared</span>
+      <span style="background:#F1F5F9;color:#64748B;border-radius:6px;font-size:10px;font-weight:600;padding:3px 8px">8 screens</span>
+    </div>
+    <div class="screen-grid">
+      <a href="./shared/37-404.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">37</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">404 Not found</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/38-403.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">38</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">403 Access denied</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/39-empty-no-jobs.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">39</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Empty state — No jobs</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/40-empty-no-approvals.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">40</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Empty state — No approvals</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/41-loading-skeleton.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">41</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Loading skeleton</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/42-maintenance.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">42</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Maintenance</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/43-onboarding-tradesperson.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">43</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Onboarding — Tradesperson</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="./shared/49-forgot-password.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow 150ms;border:1px solid transparent" onmouseover="this.style.borderColor='#073763'" onmouseout="this.style.borderColor='transparent'">
+        <div style="width:28px;height:28px;background:#073763;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">49</div>
+        <span style="font-size:13px;font-weight:500;color:#1E293B;flex:1">Forgot password</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid #E2E8F0;text-align:center">
+      <div style="font-size:12px;color:#94A3B8">Ujednano V2 &middot; Design System v1.0 &middot; Jun 2026 &middot; 59 screens across 6 user groups</div>
+      <div style="font-size:12px;color:#CBD5E1;margin-top:4px">Approved screen: 18 &mdash; Operator Dashboard &mdash; Jobs Overview</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

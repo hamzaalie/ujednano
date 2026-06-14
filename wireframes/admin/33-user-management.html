@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>User Management — Ujednano Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+    :root{--navy:#073763;--teal:#00AFA8;--border:#E2E8F0;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+    .layout{display:flex;height:100vh;overflow:hidden}
+    .sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+    .sidebar-logo{display:flex;align-items:center;gap:10px;padding:24px 20px 20px;flex-shrink:0}
+    .logo-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1}
+    .logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
+    .sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+    .sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+    .nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+    .nav-item.active{color:#00AFA8}
+    .nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+    .nav-icon{flex-shrink:0;display:flex;align-items:center;width:18px;height:18px}
+    .nav-label{flex:1;white-space:nowrap}
+    .sidebar-divider{height:1px;background:rgba(255,255,255,0.06);margin:12px 0;flex-shrink:0}
+    .sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+    .user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+    .user-info{flex:1;min-width:0}
+    .user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+    .user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+    .user-bell{display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+    .main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+    .main-content{padding:36px 40px 48px}
+    .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:24px}
+    .page-title{font-size:26px;font-weight:650;color:#0F172A;letter-spacing:-0.03em;line-height:1.15;margin-bottom:6px}
+    .page-subtitle{font-size:14px;color:#475569}
+    .card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px}
+    .table-card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    thead{border-bottom:1px solid #E2E8F0}
+    th{padding:12px 20px;font-size:11px;font-weight:600;color:#64748B;text-align:left;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;background:#F8FAFC}
+    tbody tr{border-bottom:1px solid #E2E8F0;transition:background 120ms}
+    tbody tr:last-child{border-bottom:none}
+    tbody tr:hover{background:#F8FAFC}
+    td{padding:0 20px;height:56px;vertical-align:middle}
+    .table-footer{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;border-top:1px solid #E2E8F0;font-size:13px;color:#64748B}
+    .btn-primary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:10px;white-space:nowrap;cursor:pointer;font-family:inherit;transition:border-color 120ms}
+    .btn-secondary:hover{border-color:#c4cdd8}
+    .btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:7px}
+    .teal-link{color:#00AFA8;font-size:13px;font-weight:500;text-decoration:none;cursor:pointer}
+    .teal-link:hover{text-decoration:underline}
+    .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+    .role-badge{font-size:10px;font-weight:600;border-radius:6px;padding:2px 7px;white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ADMIN SIDEBAR -->
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Admin panel</div>
+    </div>
+    <div class="sidebar-section-label">Administration</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="./32-firm-management.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span class="nav-label">Firms</span>
+      </a>
+      <a class="nav-item active" href="./33-user-management.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="nav-label">Users</span>
+      </a>
+      <a class="nav-item" href="./34-reviewer-pool.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <span class="nav-label">Reviewers</span>
+      </a>
+      <a class="nav-item" href="./35-platform-config.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+        <span class="nav-label">Configuration</span>
+      </a>
+      <a class="nav-item" href="./36-system-health.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+        <span class="nav-label">System Health</span>
+      </a>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="../operator/17-login.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></span>
+        <span class="nav-label">Back to Console</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">SA</div>
+      <div class="user-info"><span class="user-name">System Admin</span><span class="user-firm">Ujednano Platform</span></div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-content">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Users</div>
+          <div class="page-subtitle">All user accounts across the platform</div>
+        </div>
+        <a href="./53-add-edit-user.html" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add user
+        </a>
+      </div>
+
+      <!-- Filter tabs -->
+      <div style="display:inline-flex;gap:2px;padding:4px;background:#fff;border:1px solid #E2E8F0;border-radius:10px;margin-bottom:20px">
+        <button style="background:#073763;color:#fff;border:none;border-radius:8px;padding:0 14px;height:30px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">All</button>
+        <button style="background:transparent;color:#64748B;border:none;border-radius:8px;padding:0 14px;height:30px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Operators</button>
+        <button style="background:transparent;color:#64748B;border:none;border-radius:8px;padding:0 14px;height:30px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Tradespeople</button>
+        <button style="background:transparent;color:#64748B;border:none;border-radius:8px;padding:0 14px;height:30px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Reviewers</button>
+        <button style="background:transparent;color:#64748B;border:none;border-radius:8px;padding:0 14px;height:30px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Admins</button>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Firm</th>
+              <th>Status</th>
+              <th>Last login</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Hana Králová</td>
+              <td style="color:#475569;font-size:13px">hana@prostav.cz</td>
+              <td><span class="role-badge" style="background:#EEF2FF;color:#3730A3">Operator</span></td>
+              <td style="color:#475569;font-size:13px">ProStav Praha</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">11 Jun, 14:32</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Jan Novotný</td>
+              <td style="color:#475569;font-size:13px">jan@novotny-install.cz</td>
+              <td><span class="role-badge" style="background:#F0FDF4;color:#166534">Tradesperson</span></td>
+              <td style="color:#475569;font-size:13px">Novotný Instal.</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">11 Jun, 13:55</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Petr Svoboda</td>
+              <td style="color:#475569;font-size:13px">petr@svobodaelektro.cz</td>
+              <td><span class="role-badge" style="background:#F0FDF4;color:#166534">Tradesperson</span></td>
+              <td style="color:#475569;font-size:13px">Svoboda Elektro</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">10 Jun, 09:15</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Milan Procházka</td>
+              <td style="color:#475569;font-size:13px">milan@prostav.cz</td>
+              <td><span class="role-badge" style="background:#F0FDF4;color:#166534">Tradesperson</span></td>
+              <td style="color:#475569;font-size:13px">ProStav Praha</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">9 Jun, 16:44</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 5 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Josef Černý</td>
+              <td style="color:#475569;font-size:13px">josef@cernyasyn.cz</td>
+              <td><span class="role-badge" style="background:#F0FDF4;color:#166534">Tradesperson</span></td>
+              <td style="color:#475569;font-size:13px">Černý a syn</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">9 Jun, 11:20</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 6 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Pavel Novák</td>
+              <td style="color:#475569;font-size:13px">pavel@novak-expert.cz</td>
+              <td><span class="role-badge" style="background:#FDF4FF;color:#6B21A8">Reviewer</span></td>
+              <td style="color:#475569;font-size:13px">External</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">11 Jun, 15:00</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Suspend</button></div></td>
+            </tr>
+            <!-- Row 7 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">System Admin</td>
+              <td style="color:#475569;font-size:13px">admin@ujednano.com</td>
+              <td><span class="role-badge" style="background:#FFF7ED;color:#C2410C">Admin</span></td>
+              <td style="color:#475569;font-size:13px">Ujednano</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#10B981"></span><span style="font-size:13px;color:#475569">Active</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">11 Jun, 08:00</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a></div></td>
+            </tr>
+            <!-- Row 8 -->
+            <tr>
+              <td style="font-size:13.5px;font-weight:500;color:#1E293B">Martin Horáček</td>
+              <td style="color:#475569;font-size:13px">martin@horacekstavby.cz</td>
+              <td><span class="role-badge" style="background:#F0FDF4;color:#166534">Tradesperson</span></td>
+              <td style="color:#475569;font-size:13px">Horáček Stavby</td>
+              <td><div style="display:flex;align-items:center;gap:6px"><span class="status-dot" style="background:#94A3B8"></span><span style="font-size:13px;color:#475569">Suspended</span></div></td>
+              <td style="color:#475569;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap">28 May, 10:00</td>
+              <td><div style="display:flex;align-items:center;gap:8px"><a class="teal-link" href="./53-add-edit-user.html">Edit</a><button class="btn-secondary btn-sm">Activate</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span>Showing 8 of 8 users</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

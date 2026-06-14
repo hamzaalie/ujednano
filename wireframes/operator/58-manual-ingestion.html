@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manual Message Ingestion — Ujednano Operator Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#073763;--navy-dark:#042647;--teal:#00AFA8;
+  --white:#FFFFFF;--soft-white:#F8FAFC;
+  --text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;
+  --text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;
+  --border:#E2E8F0;--hover-row:#F8FAFC;--hover-ui:#F1F5F9;
+  --s-amber:#D97706;--s-green:#059669;--s-cyan:#0891B2;
+  --s-purple:#7C3AED;--s-grey:#64748B;--s-red:#DC2626;
+  --sidebar-w:260px;
+  --card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)
+}
+body{font-family:'Inter',sans-serif;font-size:14px;color:var(--text-800);background:var(--soft-white);-webkit-font-smoothing:antialiased}
+.layout{display:flex;height:100vh;overflow:hidden}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--navy-dark);display:flex;flex-direction:column;height:100vh;flex-shrink:0}
+.sidebar-nav{flex:1;overflow-y:auto;padding:16px 0}
+.nav-section-label{font-size:9.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 20px 6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:rgba(255,255,255,0.58);font-size:13.5px;font-weight:450;position:relative;transition:color 0.15s,background 0.15s;text-decoration:none;user-select:none}
+.nav-item:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04)}
+.nav-item.active{color:var(--teal)}
+.nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:22px;background:var(--teal);border-radius:0 2px 2px 0}
+.nav-item svg{flex-shrink:0;opacity:0.75}
+.nav-item.active svg{opacity:1}
+.nav-badge{margin-left:auto;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);border-radius:10px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.nav-item.active .nav-badge{color:var(--teal);background:rgba(0,175,168,0.15)}
+.sidebar-user{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:12px}
+.avatar{width:34px;height:34px;border-radius:50%;background:rgba(0,175,168,0.22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:650;color:var(--teal);flex-shrink:0;letter-spacing:0.02em}
+.sidebar-user-info{min-width:0}
+.sidebar-user-name{font-size:13px;font-weight:550;color:rgba(255,255,255,0.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-user-firm{font-size:11px;color:rgba(255,255,255,0.32);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;background:var(--soft-white)}
+.main-inner{padding:36px 40px 48px}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:#94A3B8;margin-bottom:20px}
+.breadcrumb a{color:#64748B;font-weight:500;transition:color 120ms}
+.breadcrumb a:hover{color:#00AFA8}
+.breadcrumb-sep{color:#CBD5E1}
+.breadcrumb-current{color:#0F172A;font-weight:500}
+
+/* PAGE HEADER */
+.page-title{font-size:26px;font-weight:650;letter-spacing:-0.03em;color:var(--text-900);margin-bottom:24px}
+
+/* INFO BANNER */
+.banner-teal{border-left:3px solid #00AFA8;background:#F0FDFA;padding:12px 16px;border-radius:4px;font-size:13.5px;color:#0F766E;line-height:1.6;margin-bottom:24px;max-width:760px}
+
+/* CARD */
+.card{background:var(--white);border-radius:12px;box-shadow:var(--card-shadow);border:1px solid var(--border);padding:24px 28px;max-width:760px;margin-bottom:0}
+.card-section-heading{font-size:13px;font-weight:600;color:var(--text-900);letter-spacing:0.01em;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.07em;font-size:11px;color:var(--text-400)}
+.card-divider{height:1px;background:var(--border);margin:24px 0}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:12.5px;font-weight:600;color:#475569;letter-spacing:0.01em}
+.form-label-sub{font-size:11.5px;font-weight:400;color:#94A3B8;margin-top:2px}
+.form-input{height:38px;padding:0 12px;border:1px solid var(--border);border-radius:9px;font-size:14px;color:var(--text-800);outline:none;transition:border-color 120ms,box-shadow 120ms;width:100%;background:#fff}
+.form-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+.form-select{height:38px;padding:0 34px 0 12px;border:1px solid var(--border);border-radius:9px;font-size:14px;color:var(--text-800);outline:none;transition:border-color 120ms,box-shadow 120ms;width:100%;background:#fff;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer}
+.form-select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+.form-textarea{padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-size:14px;color:var(--text-800);outline:none;transition:border-color 120ms,box-shadow 120ms;width:100%;background:#fff;resize:vertical;line-height:1.55}
+.form-textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+/* Search input with icon */
+.search-input-wrap{position:relative;display:flex;align-items:center;width:100%}
+.search-input-wrap svg{position:absolute;left:11px;color:#94A3B8;pointer-events:none;flex-shrink:0}
+.search-input-with-icon{height:38px;padding:0 12px 0 36px;border:1px solid var(--border);border-radius:9px;font-size:14px;color:var(--text-800);outline:none;transition:border-color 120ms,box-shadow 120ms;width:100%;background:#fff}
+.search-input-with-icon:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+.search-input-with-icon::placeholder{color:#94A3B8}
+/* Matched record display */
+.matched-record{background:#F1F5F9;border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:13.5px;color:var(--text-600);display:flex;align-items:center;gap:8px;min-height:38px}
+.matched-record-dot{width:7px;height:7px;border-radius:50%;background:var(--s-green);flex-shrink:0}
+/* Upload slot */
+.upload-slot{display:flex;align-items:center;gap:12px;border:2px dashed #CBD5E1;border-radius:10px;padding:16px 18px;background:#F8FAFC;cursor:pointer;transition:border-color 120ms,background 120ms}
+.upload-slot:hover{border-color:var(--teal);background:#F0FDFA}
+.upload-slot-text{font-size:13px;font-weight:500;color:#64748B}
+.upload-slot-hint{font-size:11.5px;color:#94A3B8;margin-top:2px}
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 20px;font-size:14px;font-weight:500;color:#fff;background:var(--navy);border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+.cancel-link{font-size:14px;color:#64748B;cursor:pointer;transition:color 120ms;text-decoration:none}
+.cancel-link:hover{color:#0F172A}
+.form-footer{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid var(--border);margin-top:24px}
+.form-footer-actions{display:flex;align-items:center;gap:16px}
+.warning-text{font-size:12px;color:#94A3B8;display:flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Operator console</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Workspace</div>
+
+      <a class="nav-item active" href="../../designs/operator-dashboard-jobs.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Jobs
+      </a>
+      <a class="nav-item" href="./20-approval-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Approval queue
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="./21-identity-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Identity resolution
+      </a>
+
+      <div class="nav-section-label">Tools</div>
+
+      <a class="nav-item" href="./22-correction-tool.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Correction tool
+      </a>
+      <a class="nav-item" href="./23-evidence-export.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Evidence export
+      </a>
+      <a class="nav-item" href="./24-trust-summary.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Trust summary
+      </a>
+      <a class="nav-item" href="./44-dispute-management.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Disputes
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="./27-search.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+
+      <div class="nav-section-label">System</div>
+
+      <a class="nav-item" href="./25-m12-verification-queue.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        M12 verification
+      </a>
+      <a class="nav-item" href="./46-operator-settings.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="avatar">KN</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Karel Novák</div>
+        <div class="sidebar-user-firm">Ujednano Operations s.r.o.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <span>Operator</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Manual Ingestion</span>
+      </nav>
+
+      <div class="page-title">Manual Message Ingestion</div>
+
+      <!-- Teal info banner -->
+      <div class="banner-teal">
+        Use this form to manually record a message that arrived outside the automated pipeline. It will be processed through the standard ingestion and structuring flow.
+      </div>
+
+      <!-- Form card -->
+      <div class="card">
+        <form autocomplete="off">
+
+          <!-- Message source -->
+          <div class="card-section-heading">Message source</div>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label class="form-label" for="actor-type">Actor type</label>
+              <select class="form-select" id="actor-type">
+                <option value="" disabled selected>Select actor type…</option>
+                <option value="tradesperson">Tradesperson</option>
+                <option value="homeowner">Homeowner</option>
+                <option value="unknown">Unknown</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="find-person">Find person</label>
+              <div class="search-input-wrap">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input class="search-input-with-icon" type="text" id="find-person" placeholder="Search by name, phone, or email…"/>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label">Matched record</label>
+              <div class="matched-record">
+                <span class="matched-record-dot"></span>
+                Jan Novák &mdash; +420 777 000 001 &mdash; Novák Stavby s.r.o.
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-divider"></div>
+
+          <!-- Message details -->
+          <div class="card-section-heading">Message details</div>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label class="form-label" for="channel">Channel</label>
+              <select class="form-select" id="channel">
+                <option value="" disabled selected>Select channel…</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="sms">SMS</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone call transcript</option>
+                <option value="manual">Manual entry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="timestamp">
+                Timestamp
+                <div class="form-label-sub">When was this message sent/received?</div>
+              </label>
+              <input class="form-input" type="datetime-local" id="timestamp"/>
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label" for="message-content">Message content</label>
+              <textarea class="form-textarea" id="message-content" rows="6" placeholder="Paste or type the original message here…"></textarea>
+            </div>
+
+          </div>
+
+          <div class="card-divider"></div>
+
+          <!-- Attachment -->
+          <div class="card-section-heading">Attachment</div>
+          <div class="upload-slot" onclick="document.getElementById('attachment-upload').click()">
+            <input type="file" id="attachment-upload" style="display:none"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div>
+              <div class="upload-slot-text">Attach file — optional</div>
+              <div class="upload-slot-hint">PDF, image, or document</div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="form-footer">
+            <div class="form-footer-actions">
+              <button type="submit" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Ingest message
+              </button>
+              <a class="cancel-link" href="../../designs/operator-dashboard-jobs.html">Cancel</a>
+            </div>
+            <div class="warning-text">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              This action is logged and cannot be undone.
+            </div>
+          </div>
+
+        </form>
+      </div><!-- /card -->
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

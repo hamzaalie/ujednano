@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ujednano — Rozhodnutí zaznamenáno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #073763;
+      --teal: #00AFA8;
+      --white: #FFFFFF;
+      --soft-white: #F8FAFC;
+      --text-900: #0F172A;
+      --text-800: #1E293B;
+      --text-600: #475569;
+      --text-500: #64748B;
+      --text-400: #94A3B8;
+      --border: #E2E8F0;
+      --s-green: #059669;
+      --s-cyan: #0891B2;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--soft-white);
+      color: var(--text-800);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+    .mobile-logo { display: flex; align-items: center; gap: 8px; }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+
+    .icon-circle-cyan {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(8,145,178,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-heading {
+      font-size: 20px;
+      font-weight: 650;
+      color: var(--text-900);
+      letter-spacing: -0.02em;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: var(--text-500);
+      margin-top: 6px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .ref-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ref-row:first-child { padding-top: 0; }
+    .ref-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .ref-label { font-size: 13px; color: var(--text-500); font-weight: 450; }
+    .ref-value { font-size: 13px; font-weight: 550; color: var(--text-800); text-align: right; }
+
+    .decision-val {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot-green {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--s-green);
+      flex-shrink: 0;
+    }
+
+    /* Note */
+    .note-box {
+      background: var(--soft-white);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .note-box p { font-size: 13px; color: var(--text-600); line-height: 1.6; }
+
+    /* Footer */
+    .mobile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 32px;
+    }
+    .mobile-footer span { font-size: 11px; color: var(--text-400); }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header class="mobile-header">
+      <div class="mobile-logo">
+        <img src="../assets/logos/ujednano_horizontal_logo_transparent.png" alt="Ujednano" height="22" style="display:block">
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="icon-circle-cyan">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+      </div>
+      <h1 class="hero-heading">Rozhodnutí bylo již zaznamenáno</h1>
+      <p class="hero-sub">Vaše rozhodnutí bylo bezpečně uloženo do protokolu</p>
+    </div>
+
+    <!-- Decision card -->
+    <div class="card">
+      <div class="ref-row">
+        <span class="ref-label">Vaše rozhodnutí</span>
+        <div class="decision-val">
+          <span class="dot-green"></span>
+          <span class="ref-value" style="color:#059669;">Schváleno</span>
+        </div>
+      </div>
+      <div class="ref-row">
+        <span class="ref-label">Zaznamenáno</span>
+        <span class="ref-value">10. 6. 2025, 11:20:14 SELČ</span>
+      </div>
+      <div class="ref-row">
+        <span class="ref-label">Číslo zakázky</span>
+        <span class="ref-value">UJD-2025-00847</span>
+      </div>
+    </div>
+
+    <!-- Note -->
+    <div class="note-box">
+      <p>Potvrzení ve formátu PDF bylo zasláno na váš e-mail ihned po rozhodnutí. Zkontrolujte složku Spam, pokud e-mail nevidíte.</p>
+    </div>
+
+    <footer class="mobile-footer">
+      <span>Powered by</span>
+      <img src="../assets/logos/ujednano_horizontal_logo_mono_navy_transparent.png" alt="Ujednano" height="13" style="display:block;opacity:0.55">
+    </footer>
+
+  </div>
+</body>
+</html>

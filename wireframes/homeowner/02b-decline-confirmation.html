@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Declined — Ujednano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased;min-height:100%}
+    .mobile-wrap{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:#fff}
+    .mobile-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #E2E8F0}
+    .mobile-body{padding:24px 20px;flex:1}
+    .mobile-footer{padding:16px 20px;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#94A3B8}
+  </style>
+</head>
+<body>
+<div class="mobile-wrap">
+
+  <header class="mobile-header">
+    <img src="../assets/logos/ujednano_horizontal_logo_transparent.png" alt="Ujednano" height="22" style="display:block">
+  </header>
+
+  <main class="mobile-body">
+
+    <!-- Red circle with X icon -->
+    <div style="width:64px;height:64px;border-radius:32px;background:#FEF2F2;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+
+    <h1 style="font-size:22px;font-weight:650;color:#0F172A;text-align:center;letter-spacing:-0.025em">You declined this proposal</h1>
+    <p style="font-size:14px;color:#64748B;text-align:center;line-height:1.6;margin-top:10px">Your decision has been permanently recorded. The tradesperson will be notified.</p>
+
+    <!-- Decision record card -->
+    <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin-top:24px">
+      <div style="font-size:11px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Decision record</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+
+        <div style="display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">
+          <span style="color:#64748B">Decision</span>
+          <span style="font-weight:600;color:#DC2626">Declined</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">
+          <span style="color:#64748B">Proposal</span>
+          <span style="font-weight:500;color:#0F172A;text-align:right;max-width:200px">Boiler replacement — Vaillant ecoTEC Plus</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">
+          <span style="color:#64748B">Price</span>
+          <span style="font-weight:550;color:#073763;font-variant-numeric:tabular-nums">48 500 Kc</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">
+          <span style="color:#64748B">From</span>
+          <span style="color:#0F172A">Jan Novotny</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px">
+          <span style="color:#64748B">Recorded</span>
+          <span style="color:#0F172A;font-variant-numeric:tabular-nums">11 Jun 2025, 14:52</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- What happens next -->
+    <div style="margin-top:20px">
+      <div style="font-size:13px;font-weight:600;color:#1E293B;margin-bottom:10px">What happens next</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 2.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span style="font-size:13px;color:#475569;line-height:1.5">The tradesperson has been notified of your decision. They may contact you to discuss.</span>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span style="font-size:13px;color:#475569;line-height:1.5">This link will remain readable. You can return to see your confirmed decision at any time.</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Reference -->
+    <div style="margin-top:24px;text-align:center;font-size:12px;color:#94A3B8">
+      Reference: <span style="font-family:monospace;color:#64748B">UJD-00847-DEC</span>
+    </div>
+
+  </main>
+
+  <footer class="mobile-footer">
+    <img src="../assets/logos/ujednano_horizontal_logo_mono_navy_transparent.png" alt="Ujednano" height="13" style="display:block;opacity:0.55">
+    <span>·</span>
+    <span>Powered by Ujednano</span>
+  </footer>
+
+</div>
+</body>
+</html>

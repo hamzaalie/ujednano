@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>31 — Submitted Confirmation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--border:#E2E8F0;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+.layout{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+.sidebar-logo{display:flex;align-items:center;gap:10px;padding:24px 20px 20px;flex-shrink:0}
+.logo-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1}
+.logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
+.sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.nav-item.active{color:#00AFA8}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+.nav-icon{flex-shrink:0;display:flex;align-items:center;width:18px;height:18px}
+.nav-label{flex:1;white-space:nowrap}
+.nav-badge{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.60)}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+.user-bell{flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+.main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+
+/* Page-specific */
+.confirm-area{max-width:600px;margin:80px auto;text-align:center;padding:0 24px}
+.check-circle{width:64px;height:64px;border-radius:50%;border:2px solid #059669;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.confirm-heading{font-size:24px;font-weight:650;color:#0F172A;margin-top:20px;letter-spacing:-0.02em}
+.confirm-para{font-size:14px;color:#64748B;margin-top:12px;line-height:1.6}
+.ref-card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:20px;max-width:400px;margin:24px auto}
+.ref-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #E2E8F0}
+.ref-row:last-child{border-bottom:none}
+.ref-label{font-size:12px;font-weight:600;color:#94A3B8;letter-spacing:0.04em;text-transform:uppercase}
+.ref-value{font-size:13px;font-weight:500;color:#1E293B;font-variant-numeric:tabular-nums}
+.return-link{display:block;font-size:14px;font-weight:500;color:#00AFA8;text-align:center;margin-top:20px;cursor:pointer}
+.conclusion-val{display:flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Reviewer console</div>
+    </div>
+    <div class="sidebar-section-label">Reviews</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="./28-assigned-reviews.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+        <span class="nav-label">Assigned reviews</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item active" href="./31-submitted-confirmation.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="nav-label">Submitted reports</span>
+      </a>
+      <a class="nav-item" href="./47-addendum.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+        <span class="nav-label">Addenda</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">PN</div>
+      <div class="user-info"><span class="user-name">Pavel Novák</span><span class="user-firm">External reviewer</span></div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="confirm-area">
+      <div class="check-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+
+      <div class="confirm-heading">Report submitted</div>
+      <p class="confirm-para">Your report has been submitted and stored in the evidence ledger. The homeowner will be notified and can view the report summary.</p>
+
+      <div class="ref-card">
+        <div class="ref-row">
+          <span class="ref-label">Review reference</span>
+          <span class="ref-value">UJD-REV-2025-00312</span>
+        </div>
+        <div class="ref-row">
+          <span class="ref-label">Submitted</span>
+          <span class="ref-value">11 Jun 2025, 18:32:04 UTC</span>
+        </div>
+        <div class="ref-row">
+          <span class="ref-label">Conclusion</span>
+          <span class="ref-value">
+            <span class="conclusion-val">
+              <span class="status-dot" style="background:#D97706;"></span>
+              Clarification needed
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <a class="return-link" href="./28-assigned-reviews.html">Return to my reviews</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

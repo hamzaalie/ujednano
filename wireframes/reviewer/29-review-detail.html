@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>29 — Review Detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--border:#E2E8F0;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+.layout{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+.sidebar-logo{display:flex;align-items:center;gap:10px;padding:24px 20px 20px;flex-shrink:0}
+.logo-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1}
+.logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
+.sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.nav-item.active{color:#00AFA8}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+.nav-icon{flex-shrink:0;display:flex;align-items:center;width:18px;height:18px}
+.nav-label{flex:1;white-space:nowrap}
+.nav-badge{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.60)}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+.user-bell{flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+.main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+.main-content{padding:36px 40px 48px}
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+
+/* Page-specific */
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:#64748B;margin-bottom:20px;cursor:pointer;transition:color 120ms}
+.back-link:hover{color:#0F172A}
+.anon-banner{display:flex;align-items:center;gap:10px;background:#F0FFFE;border-left:3px solid #00AFA8;border-radius:8px;padding:12px 16px;margin-bottom:20px}
+.anon-banner-text{font-size:13px;color:#00AFA8;line-height:1.45}
+.job-heading{font-size:22px;font-weight:650;color:#0F172A;letter-spacing:-0.02em;margin-bottom:8px}
+.job-sub-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.job-price-lg{font-size:15px;font-weight:600;color:#073763;font-variant-numeric:tabular-nums}
+.sla-badge-sm{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#EEF2FF;color:#3730A3}
+.sla-text{font-size:13px;color:#64748B}
+.detail-row{display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid #E2E8F0}
+.detail-row:last-child{border-bottom:none}
+.detail-label{font-size:11px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase}
+.detail-value{font-size:14px;color:#1E293B;line-height:1.5}
+.attachment-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:#1E293B;background:#F1F5F9;border-radius:6px;padding:3px 9px;margin-right:6px}
+.card-title{font-size:14px;font-weight:600;color:#0F172A;margin-bottom:16px}
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #E2E8F0}
+.tl-item:last-child{border-bottom:none}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;padding-top:3px}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:#073763;flex-shrink:0}
+.tl-line{flex:1;width:1px;background:#E2E8F0;margin-top:4px}
+.tl-content{flex:1;min-width:0}
+.tl-actor{font-size:11px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px}
+.tl-event{font-size:13px;font-weight:600;color:#0F172A;margin-bottom:2px}
+.tl-desc{font-size:13px;color:#475569;line-height:1.45}
+.tl-time{font-size:11px;color:#94A3B8;margin-top:4px}
+.divider-dot{color:#94A3B8;font-size:14px}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Reviewer console</div>
+    </div>
+    <div class="sidebar-section-label">Reviews</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="./28-assigned-reviews.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+        <span class="nav-label">Assigned reviews</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="./31-submitted-confirmation.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="nav-label">Submitted reports</span>
+      </a>
+      <a class="nav-item" href="./47-addendum.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+        <span class="nav-label">Addenda</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">PN</div>
+      <div class="user-info"><span class="user-name">Pavel Novák</span><span class="user-firm">External reviewer</span></div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-content">
+      <a class="back-link" href="./28-assigned-reviews.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        My reviews
+      </a>
+
+      <div class="anon-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span class="anon-banner-text">You are reviewing anonymised data. No homeowner personal details are shown to reviewers.</span>
+      </div>
+
+      <div class="job-heading">Boiler replacement — Vaillant ecoTEC Plus</div>
+      <div class="job-sub-row">
+        <span class="job-price-lg">48 500 CZK</span>
+        <span class="divider-dot">·</span>
+        <span class="sla-badge-sm">Standard — Small</span>
+        <span class="divider-dot">·</span>
+        <span class="sla-text">SLA: 12 Jun, 14:12</span>
+      </div>
+
+      <!-- Proposal detail card -->
+      <div class="card">
+        <div class="card-title">Proposal detail</div>
+        <div class="detail-row">
+          <span class="detail-label">Scope</span>
+          <span class="detail-value">Boiler replacement — Vaillant ecoTEC Plus 24kW. Removal and disposal of old unit, full installation, commissioning and testing.</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Price</span>
+          <span class="detail-value" style="font-weight:600;color:#073763;font-variant-numeric:tabular-nums;">48 500 CZK</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Timeline</span>
+          <span class="detail-value">3 working days from agreed start date</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Property type</span>
+          <span class="detail-value">Residential — apartment</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Praha 2, Czech Republic</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Attachments</span>
+          <div style="margin-top:4px">
+            <span class="attachment-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Quotation.pdf
+            </span>
+            <span class="attachment-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Vaillant spec.pdf
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline card -->
+      <div class="card" style="margin-top:16px">
+        <div class="card-title">Proposal history</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-content">
+              <div class="tl-actor">Tradesperson</div>
+              <div class="tl-event">Proposal submitted via WhatsApp</div>
+              <div class="tl-desc">48 500 CZK quoted for boiler replacement work</div>
+              <div class="tl-time">11 Jun, 13:55</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-content">
+              <div class="tl-actor">Homeowner</div>
+              <div class="tl-event">Verification requested</div>
+              <div class="tl-desc">Homeowner requested expert review before deciding</div>
+              <div class="tl-time">11 Jun, 14:12</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot-col">
+              <div class="tl-dot"></div>
+            </div>
+            <div class="tl-content">
+              <div class="tl-actor">System</div>
+              <div class="tl-event">Review assigned</div>
+              <div class="tl-desc">Review assigned to Pavel Novák</div>
+              <div class="tl-time">11 Jun, 14:20</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:24px">
+        <a class="btn-primary" href="./30-report-form.html">Begin report</a>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

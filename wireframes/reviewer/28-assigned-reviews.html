@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>28 — My Reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--border:#E2E8F0;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+.layout{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+.sidebar-logo{display:flex;align-items:center;gap:10px;padding:24px 20px 20px;flex-shrink:0}
+.logo-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1}
+.logo-subtitle{font-size:11px;color:rgba(255,255,255,0.45);line-height:1}
+.sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.nav-item.active{color:#00AFA8}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+.nav-icon{flex-shrink:0;display:flex;align-items:center;width:18px;height:18px}
+.nav-label{flex:1;white-space:nowrap}
+.nav-badge{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.60)}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+.user-bell{flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+.main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+.main-content{padding:36px 40px 48px}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:24px}
+.page-title{font-size:26px;font-weight:650;color:#0F172A;letter-spacing:-0.03em;line-height:1.15;margin-bottom:6px}
+.page-subtitle{font-size:14px;color:#475569}
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+.btn-secondary{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:10px;white-space:nowrap;cursor:pointer;font-family:inherit;transition:border-color 120ms}
+.btn-secondary:hover{border-color:#c4cdd8}
+.btn-teal{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#00AFA8;border:none;border-radius:10px;white-space:nowrap;cursor:pointer;font-family:inherit}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:7px}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+
+/* Page-specific */
+.section-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.section-label{font-size:14px;font-weight:600}
+.section-count{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center}
+.review-card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:20px;display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.review-card:last-child{margin-bottom:0}
+.job-title{font-size:14px;font-weight:600;color:#0F172A}
+.job-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.job-price{font-size:13px;font-weight:500;color:#073763;font-variant-numeric:tabular-nums}
+.job-tag{font-size:13px;color:#64748B}
+.job-requested{display:flex;align-items:center;gap:6px;font-size:13px;color:#64748B}
+.sla-row{display:flex;align-items:center;gap:10px}
+.sla-time{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.sla-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;background:#F1F5F9;color:#64748B}
+.card-action-row{display:flex;justify-content:flex-end}
+.teal-link{font-size:13px;font-weight:500;color:#00AFA8;text-decoration:none;cursor:pointer;background:none;border:none;display:inline-flex;align-items:center;gap:4px}
+.completed-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.completed-time{font-size:13px;font-weight:500;color:#059669}
+.section-block{margin-bottom:28px}
+.section-block:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Reviewer console</div>
+    </div>
+    <div class="sidebar-section-label">Reviews</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="./28-assigned-reviews.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+        <span class="nav-label">Assigned reviews</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="./31-submitted-confirmation.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="nav-label">Submitted reports</span>
+      </a>
+      <a class="nav-item" href="./47-addendum.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+        <span class="nav-label">Addenda</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">PN</div>
+      <div class="user-info"><span class="user-name">Pavel Novák</span><span class="user-firm">External reviewer</span></div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-content">
+      <div class="page-header">
+        <div>
+          <div class="page-title">My reviews</div>
+          <div class="page-subtitle">Pavel Novák — External reviewer</div>
+        </div>
+      </div>
+
+      <!-- To do section -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="status-dot" style="background:#DC2626;width:8px;height:8px;"></span>
+          <span class="section-label" style="color:#DC2626;">To do</span>
+          <span class="section-count" style="background:#FEE2E2;color:#DC2626;">2</span>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="review-card">
+          <div class="job-title">Boiler replacement — Vaillant ecoTEC Plus</div>
+          <div class="job-meta">
+            <span class="job-price">48 500 CZK</span>
+            <span class="job-tag">Residential apartment</span>
+            <span class="job-tag">Praha 2</span>
+          </div>
+          <div class="job-requested">
+            <span style="color:#94A3B8;font-size:12px;font-weight:500;">Requested</span>
+            <span>11 Jun, 14:12</span>
+          </div>
+          <div class="sla-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="sla-time" style="color:#D97706;">18h 42m remaining</span>
+            <span class="sla-badge">Standard — Small</span>
+          </div>
+          <div class="card-action-row">
+            <a class="btn-primary btn-sm" href="./29-review-detail.html">Start review</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="review-card">
+          <div class="job-title">Roof repair — 40m² tiles and flashing</div>
+          <div class="job-meta">
+            <span class="job-price">89 200 CZK</span>
+            <span class="job-tag">Residential house</span>
+            <span class="job-tag">Praha 6</span>
+          </div>
+          <div class="job-requested">
+            <span style="color:#94A3B8;font-size:12px;font-weight:500;">Requested</span>
+            <span>9 Jun, 11:20</span>
+          </div>
+          <div class="sla-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="sla-time" style="color:#DC2626;">Overdue — 26h</span>
+            <span class="sla-badge">Standard — Large</span>
+          </div>
+          <div class="card-action-row">
+            <a class="btn-primary btn-sm" href="./29-review-detail.html">Start review</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In progress section -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="status-dot" style="background:#059669;width:8px;height:8px;"></span>
+          <span class="section-label" style="color:#059669;">In progress</span>
+          <span class="section-count" style="background:#D1FAE5;color:#059669;">1</span>
+        </div>
+
+        <div class="review-card">
+          <div class="job-title">Full electrical rewiring — ground floor</div>
+          <div class="job-meta">
+            <span class="job-price">127 000 CZK</span>
+            <span class="job-tag">Residential house</span>
+            <span class="job-tag">Praha 2</span>
+          </div>
+          <div class="job-requested">
+            <span style="color:#94A3B8;font-size:12px;font-weight:500;">Started</span>
+            <span>11 Jun, 16:00</span>
+          </div>
+          <div class="sla-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="sla-time" style="color:#059669;">46h remaining</span>
+            <span class="sla-badge">Standard — Large</span>
+          </div>
+          <div class="card-action-row">
+            <a class="btn-teal btn-sm" href="./29-review-detail.html">Continue</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed section -->
+      <div class="section-block">
+        <div class="section-header">
+          <span class="status-dot" style="background:#94A3B8;width:8px;height:8px;"></span>
+          <span class="section-label" style="color:#64748B;">Completed</span>
+          <span class="section-count" style="background:#F1F5F9;color:#64748B;">2</span>
+        </div>
+
+        <div class="review-card">
+          <div class="job-title">Consumer unit upgrade and EICR cert</div>
+          <div class="completed-meta">
+            <span class="job-price">18 500 CZK</span>
+            <span class="job-tag">Submitted 7 Jun</span>
+            <span class="completed-time">Completed in 4h 12m</span>
+          </div>
+          <div class="card-action-row">
+            <a class="teal-link" href="./29-review-detail.html">View report</a>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="job-title">Bathroom renovation — complete rebuild</div>
+          <div class="completed-meta">
+            <span class="job-price">215 000 CZK</span>
+            <span class="job-tag">Submitted 5 Jun</span>
+            <span class="completed-time">Completed in 22h 55m</span>
+          </div>
+          <div class="card-action-row">
+            <a class="teal-link" href="./29-review-detail.html">View report</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

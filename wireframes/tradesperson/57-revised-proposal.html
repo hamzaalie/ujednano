@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Submit Revised Proposal — Ujednano Tradesperson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--white:#FFFFFF;--soft-white:#F8FAFC;--text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;--text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;--border:#E2E8F0;--hover-row:#F8FAFC;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03);--s-amber:#D97706;--s-green:#059669;--s-red:#DC2626;--s-grey:#64748B}
+.layout{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:#042647;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;flex-shrink:0}
+.sidebar-section-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;padding:20px 20px 8px;flex-shrink:0}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.92);position:relative;transition:background 120ms,color 120ms;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.nav-item.active{color:#00AFA8}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00AFA8;border-radius:0 2px 2px 0}
+.nav-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:18px;height:18px}
+.nav-label{flex:1;white-space:nowrap}
+.nav-badge{height:20px;min-width:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.60)}
+.sidebar-divider{height:1px;background:rgba(255,255,255,0.06);margin:12px 0;flex-shrink:0}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{display:block;font-size:13px;font-weight:550;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.user-firm{display:block;font-size:11px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+.user-bell{flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,0.35);cursor:pointer;padding:6px;border-radius:6px;background:transparent;border:none;outline:none}
+.main{flex:1;overflow-y:auto;background:#F8FAFC;min-width:0}
+.main-content{padding:36px 40px 48px}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:#94A3B8;margin-bottom:20px}
+.breadcrumb a{color:#64748B;font-weight:500;transition:color 120ms}
+.breadcrumb a:hover{color:#00AFA8}
+.breadcrumb-sep{color:#CBD5E1}
+.breadcrumb-current{color:#0F172A;font-weight:500}
+.page-title{font-size:26px;font-weight:650;color:#0F172A;letter-spacing:-0.03em;line-height:1.15;margin-bottom:24px}
+/* Banner */
+.banner-amber{border-left:3px solid #D97706;background:#FFFBEB;padding:12px 16px;border-radius:4px;font-size:13.5px;color:#92400E;line-height:1.55;margin-bottom:20px;max-width:760px}
+/* Cards */
+.card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:24px 28px;max-width:760px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:600;color:#0F172A;margin-bottom:14px}
+.card-title-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.card-title-label{font-size:15px;font-weight:600;color:#0F172A}
+.card-readonly-badge{font-size:11.5px;font-weight:500;color:#94A3B8}
+/* Blockquote */
+blockquote{border-left:3px solid #E2E8F0;padding:10px 16px;color:#475569;font-size:14px;line-height:1.65;margin:0;font-style:italic}
+.blockquote-attribution{font-size:12.5px;color:#94A3B8;margin-top:8px;font-style:normal}
+/* Original proposal meta */
+.original-card{background:#F8FAFC;border-radius:10px;border:1px solid #E2E8F0}
+.original-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:10px;overflow:hidden}
+.meta-item{padding:14px 18px;border-right:1px solid #E2E8F0}
+.meta-item:last-child{border-right:none}
+.meta-label{font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#94A3B8;margin-bottom:4px}
+.meta-value{font-size:15px;font-weight:600;color:#0F172A}
+/* Form */
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group:last-of-type{margin-bottom:0}
+.form-label{font-size:12.5px;font-weight:600;color:#475569;letter-spacing:0.01em}
+.form-label-note{font-size:11.5px;font-weight:400;color:#94A3B8;margin-left:6px}
+.price-wrap{display:flex;align-items:center;gap:0;position:relative}
+.form-input{height:38px;padding:0 12px;border:1px solid #E2E8F0;border-radius:9px;font-size:14px;color:#1E293B;outline:none;transition:border-color 120ms,box-shadow 120ms;background:#fff}
+.form-input:focus{border-color:#00AFA8;box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+.input-full{width:100%}
+.input-price{border-radius:9px 0 0 9px;flex:1}
+.currency-tag{height:38px;padding:0 12px;background:#F1F5F9;border:1px solid #E2E8F0;border-left:none;border-radius:0 9px 9px 0;font-size:13px;font-weight:600;color:#64748B;display:flex;align-items:center;white-space:nowrap}
+.form-textarea{padding:10px 12px;border:1px solid #E2E8F0;border-radius:9px;font-size:14px;color:#1E293B;outline:none;transition:border-color 120ms,box-shadow 120ms;width:100%;background:#fff;resize:vertical;line-height:1.5}
+.form-textarea:focus{border-color:#00AFA8;box-shadow:0 0 0 3px rgba(0,175,168,0.08)}
+/* Upload slot */
+.upload-slot{display:flex;align-items:center;gap:12px;border:2px dashed #CBD5E1;border-radius:10px;padding:16px 18px;background:#F8FAFC;cursor:pointer;transition:border-color 120ms,background 120ms}
+.upload-slot:hover{border-color:#00AFA8;background:#F0FDFA}
+.upload-slot-text{font-size:13px;font-weight:500;color:#64748B}
+.upload-slot-hint{font-size:11.5px;color:#94A3B8;margin-top:2px}
+/* Footer */
+.form-footer{display:flex;align-items:center;gap:16px;padding-top:20px}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 20px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+.cancel-link{font-size:14px;color:#64748B;cursor:pointer;transition:color 120ms;text-decoration:none}
+.cancel-link:hover{color:#0F172A}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div style="padding:22px 20px 16px;flex-shrink:0">
+      <img src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano" height="30" style="display:block">
+      <div style="font-size:10.5px;color:rgba(255,255,255,0.42);margin-top:8px;line-height:1">Tradesperson portal</div>
+    </div>
+    <div class="sidebar-section-label">My workspace</div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="./09-jobs-list.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+        <span class="nav-label">My Jobs</span>
+      </a>
+      <a class="nav-item" href="./12-pending-approvals.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="nav-label">Approvals</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" href="./13-evidence-packs.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+        <span class="nav-label">Evidence Packs</span>
+      </a>
+      <a class="nav-item" href="./14-trust-passport.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+        <span class="nav-label">Trust Passport</span>
+      </a>
+      <a class="nav-item" href="./15-my-channels.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span class="nav-label">My Channels</span>
+      </a>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="./16-profile-settings.html">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span class="nav-label">Profile</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JN</div>
+      <div class="user-info">
+        <span class="user-name">Jan Novotný</span>
+        <span class="user-firm">Novotný Instalatérství s.r.o.</span>
+      </div>
+      <button class="user-bell"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-content">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="./09-jobs-list.html">Jobs</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="./10-job-detail.html">JB-2891</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Revised Proposal</span>
+      </nav>
+
+      <div class="page-title">Submit Revised Proposal</div>
+
+      <!-- Amber revision request banner -->
+      <div class="banner-amber">
+        <strong>Homeowner requested revisions on 10 June 2026</strong> — Review their feedback and submit an updated proposal.
+      </div>
+
+      <!-- Homeowner feedback card -->
+      <div class="card">
+        <div class="card-title">Homeowner feedback</div>
+        <blockquote>
+          "The price seems too high for the scope described. Can you provide a breakdown and reduce the timeline?"
+          <div class="blockquote-attribution">— Jana Procházková, 10 June 2026</div>
+        </blockquote>
+      </div>
+
+      <!-- Original proposal card (read-only) -->
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="padding:16px 20px 12px 20px;border-bottom:1px solid #E2E8F0">
+          <div class="card-title-row">
+            <span class="card-title-label">Your original proposal</span>
+            <span class="card-readonly-badge">(read-only)</span>
+          </div>
+        </div>
+        <div class="original-meta">
+          <div class="meta-item">
+            <div class="meta-label">Original price</div>
+            <div class="meta-value">45,000 CZK</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Original timeline</div>
+            <div class="meta-value">6 weeks</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Submitted</div>
+            <div class="meta-value">5 June 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revised proposal form card -->
+      <div class="card">
+        <div class="card-title">Revised proposal</div>
+
+        <div class="form-group">
+          <label class="form-label" for="revised-price">Revised price<span class="form-label-note">CZK</span></label>
+          <div class="price-wrap">
+            <input class="form-input input-price" type="number" id="revised-price" placeholder="0" min="0"/>
+            <div class="currency-tag">CZK</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="revised-timeline">Revised timeline</label>
+          <input class="form-input input-full" type="text" id="revised-timeline" placeholder="e.g. 4 weeks"/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="summary-changes">Summary of changes <span style="color:#DC2626">*</span></label>
+          <textarea class="form-textarea" id="summary-changes" rows="4" placeholder="Explain what changed — visible to homeowner and operator…" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Supporting documents <span class="form-label-note">(optional)</span></label>
+          <div class="upload-slot" onclick="document.getElementById('support-upload').click()">
+            <input type="file" id="support-upload" style="display:none" multiple/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div>
+              <div class="upload-slot-text">Attach files</div>
+              <div class="upload-slot-hint">PDF, images — optional</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Submit Revised Proposal
+          </button>
+          <a class="cancel-link" href="./10-job-detail.html">Cancel</a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

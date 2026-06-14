@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ujednano — Předání zakázky</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #073763;
+      --navy-dark: #042647;
+      --teal: #00AFA8;
+      --white: #FFFFFF;
+      --soft-white: #F8FAFC;
+      --text-900: #0F172A;
+      --text-800: #1E293B;
+      --text-600: #475569;
+      --text-500: #64748B;
+      --text-400: #94A3B8;
+      --text-300: #CBD5E1;
+      --border: #E2E8F0;
+      --hover-ui: #F1F5F9;
+      --s-amber: #D97706;
+      --s-green: #059669;
+      --s-cyan: #0891B2;
+      --s-purple: #7C3AED;
+      --s-grey: #64748B;
+      --s-red: #DC2626;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      --card-shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--soft-white);
+      color: var(--text-800);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 0 0 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .mobile-header {
+      background: var(--navy);
+      padding: 20px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .header-logo {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .header-title {
+      font-size: 17px;
+      font-weight: 650;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .header-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.4;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 20px;
+      margin: 0 16px 14px;
+    }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-400);
+      margin-bottom: 14px;
+    }
+
+    /* ── Job summary ── */
+    .job-title {
+      font-size: 16px;
+      font-weight: 650;
+      color: var(--text-900);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .job-meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .job-meta-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+    .job-meta-row:first-of-type { padding-top: 0; }
+    .job-meta-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-500);
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+    .job-meta-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-800);
+    }
+    .status-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-dot-green { background: var(--s-green); }
+    .status-label-green {
+      font-size: 13px;
+      font-weight: 550;
+      color: var(--s-green);
+    }
+
+    /* ── Section heading (outside card) ── */
+    .section-heading {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-800);
+      margin: 0 16px 10px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Photo placeholders ── */
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 0 16px 14px;
+    }
+    @media (max-width: 340px) {
+      .photos-grid { grid-template-columns: 1fr; }
+    }
+    .photo-placeholder {
+      background: var(--hover-ui);
+      border-radius: 10px;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .photo-placeholder-label {
+      font-size: 10px;
+      color: var(--text-400);
+      font-weight: 500;
+    }
+
+    /* ── Notes card ── */
+    .notes-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      margin: 0 16px 14px;
+    }
+    .notes-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-500);
+      margin-bottom: 8px;
+    }
+    .notes-body {
+      font-size: 13.5px;
+      color: var(--text-800);
+      line-height: 1.6;
+    }
+
+    /* ── Checklist ── */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 16px 14px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(0,175,168,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .check-text {
+      font-size: 13.5px;
+      color: var(--text-800);
+      font-weight: 450;
+    }
+
+    /* ── Action card ── */
+    .action-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 20px;
+      margin: 0 16px 14px;
+    }
+    .action-heading {
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--text-900);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary-navy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 550;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 1px 2px rgba(7,55,99,0.14);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-primary-teal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 550;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 1px 2px rgba(0,175,168,0.14);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      background: var(--white);
+      color: var(--text-800);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 550;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ── Footer ── */
+    .mobile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 32px;
+      padding-bottom: 8px;
+    }
+    .mobile-footer span {
+      font-size: 11px;
+      color: var(--text-400);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- ── Header ── -->
+    <header class="mobile-header">
+      <img
+        class="header-logo"
+        src="../assets/logos/ujednano_horizontal_logo_white_background.png"
+        alt="Ujednano"
+        height="24"
+      />
+      <div class="header-title">Předání zakázky</div>
+      <div class="header-subtitle">Zhotovitel žádá o potvrzení dokončení</div>
+    </header>
+
+    <!-- ── Job summary card ── -->
+    <div class="card">
+      <div class="job-title">Rekonstrukce koupelny</div>
+
+      <div class="job-meta-row">
+        <span class="job-meta-label">Zhotovitel</span>
+        <span class="job-meta-value">Jan Novák — Novák Stavby s.r.o.</span>
+      </div>
+
+      <div class="job-meta-row">
+        <span class="job-meta-label">Datum zahájení</span>
+        <span class="job-meta-value">3. března 2026</span>
+      </div>
+
+      <div class="job-meta-row">
+        <span class="job-meta-label">Datum dokončení</span>
+        <span class="job-meta-value">12. června 2026</span>
+      </div>
+
+      <div class="job-meta-row">
+        <span class="job-meta-label">Stav</span>
+        <span class="status-inline">
+          <span class="status-dot status-dot-green"></span>
+          <span class="status-label-green">Dokončeno</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ── Photos ── -->
+    <div class="section-heading">Fotografie z dokončení</div>
+    <div class="photos-grid">
+      <div class="photo-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-placeholder-label">Fotografie</span>
+      </div>
+      <div class="photo-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-placeholder-label">Fotografie</span>
+      </div>
+      <div class="photo-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-placeholder-label">Fotografie</span>
+      </div>
+    </div>
+
+    <!-- ── Tradesperson notes ── -->
+    <div class="notes-card">
+      <div class="notes-label">Poznámky zhotovitele:</div>
+      <div class="notes-body">Rekonstrukce proběhla bez komplikací. Veškerý materiál byl odstraněn, prostor je čistý. Klíče budou předány osobně.</div>
+    </div>
+
+    <!-- ── Checklist ── -->
+    <div class="section-heading">Potvrzené kroky</div>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="check-text">Prostor byl kompletně vyčištěn</span>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="check-text">Veškerý materiál a vybavení odstraněno</span>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="check-text">Prohlídka s majitelem provedena</span>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00AFA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="check-text">Klíče / přístup vrácen</span>
+      </div>
+    </div>
+
+    <!-- ── Action section ── -->
+    <div class="action-card">
+      <div class="action-heading">Vaše rozhodnutí</div>
+      <div class="btn-group">
+        <button class="btn-primary-navy" onclick="window.location.href='./02-confirmation.html'">Schválit předání</button>
+        <button class="btn-secondary" onclick="window.location.href='./02b-decline-confirmation.html'">Nahlásit problém</button>
+        <button class="btn-primary-teal" onclick="window.location.href='./03-review-awaiting.html'">Požádat o odborné ověření</button>
+      </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="mobile-footer">
+      <span>Powered by</span>
+      <img src="../assets/logos/ujednano_horizontal_logo_mono_navy_transparent.png" alt="Ujednano" height="13" style="display:block;opacity:0.55">
+    </footer>
+
+  </div>
+</body>
+</html>

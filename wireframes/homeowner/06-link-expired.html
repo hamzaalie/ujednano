@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ujednano — Platnost odkazu vypršela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #073763;
+      --teal: #00AFA8;
+      --white: #FFFFFF;
+      --soft-white: #F8FAFC;
+      --text-900: #0F172A;
+      --text-800: #1E293B;
+      --text-600: #475569;
+      --text-500: #64748B;
+      --text-400: #94A3B8;
+      --border: #E2E8F0;
+      --hover-ui: #F1F5F9;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--soft-white);
+      color: var(--text-800);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+    .mobile-logo { display: flex; align-items: center; gap: 8px; }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+
+    .icon-circle-grey {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--hover-ui);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-heading {
+      font-size: 20px;
+      font-weight: 650;
+      color: var(--text-900);
+      letter-spacing: -0.02em;
+      margin-top: 16px;
+    }
+
+    .hero-para {
+      font-size: 14px;
+      color: var(--text-500);
+      margin-top: 12px;
+      line-height: 1.6;
+      max-width: 330px;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card-heading {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-800);
+      margin-bottom: 16px;
+    }
+
+    /* Steps */
+    .step-list { display: flex; flex-direction: column; gap: 12px; }
+    .step-item { display: flex; align-items: flex-start; gap: 12px; }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--soft-white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-500);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 14px; color: var(--text-800); line-height: 1.5; }
+
+    /* Contact note */
+    .contact-note {
+      font-size: 13px;
+      color: var(--text-500);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    .mobile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 32px;
+    }
+    .mobile-footer span { font-size: 11px; color: var(--text-400); }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header class="mobile-header">
+      <div class="mobile-logo">
+        <img src="../assets/logos/ujednano_horizontal_logo_transparent.png" alt="Ujednano" height="22" style="display:block">
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="icon-circle-grey">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <h1 class="hero-heading">Platnost odkazu vypršela</h1>
+      <p class="hero-para">Tento odkaz byl platný po dobu 72 hodin a jeho platnost již vypršela. Pro vaši bezpečnost nelze odkaz znovu aktivovat.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- What to do card -->
+    <div class="card">
+      <h2 class="card-heading">Co dělat dále</h2>
+      <div class="step-list">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <span class="step-text">Kontaktujte svého řemeslníka přímo</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <span class="step-text">Požádejte o zaslání nového odkazu pro schválení</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <span class="step-text">Nový odkaz bude platný dalších 72 hodin</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="contact-note">Potřebujete pomoc? Obraťte se na svého řemeslníka.</p>
+
+    <footer class="mobile-footer">
+      <span>Powered by</span>
+      <img src="../assets/logos/ujednano_horizontal_logo_mono_navy_transparent.png" alt="Ujednano" height="13" style="display:block;opacity:0.55">
+    </footer>
+
+  </div>
+</body>
+</html>

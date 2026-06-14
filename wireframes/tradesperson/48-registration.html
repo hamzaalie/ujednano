@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>48 — Registration · Ujednano Tradesperson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:#0F172A;background:#F8FAFC;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+:root{--navy:#073763;--navy-dark:#042647;--teal:#00AFA8;--white:#FFFFFF;--soft-white:#F8FAFC;--text-900:#0F172A;--text-800:#1E293B;--text-600:#475569;--text-500:#64748B;--text-400:#94A3B8;--text-300:#CBD5E1;--border:#E2E8F0;--hover-row:#F8FAFC;--card-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03);--s-amber:#D97706;--s-green:#059669;--s-red:#DC2626;--s-grey:#64748B}
+.form-label{font-size:13px;font-weight:550;color:#1E293B;margin-bottom:6px;display:block}
+.form-input{width:100%;height:40px;padding:0 12px;font-size:14px;color:#1E293B;background:#fff;border:1px solid #E2E8F0;border-radius:8px;outline:none;transition:border-color 150ms,box-shadow 150ms}
+.form-input:focus{border-color:#073763;box-shadow:0 0 0 3px rgba(7,55,99,0.08)}
+select.form-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;padding:0 16px;font-size:14px;font-weight:500;color:#fff;background:#073763;border:none;border-radius:10px;box-shadow:0 1px 2px rgba(7,55,99,0.14);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform 150ms,box-shadow 150ms;width:100%}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(7,55,99,0.2)}
+
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px 16px}
+.auth-card{width:100%;max-width:480px;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:40px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03)}
+.auth-logo{display:block;height:30px;width:auto;max-width:180px;margin-bottom:6px}
+.auth-portal-label{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#94A3B8;margin-bottom:24px}
+.auth-title{font-size:22px;font-weight:650;color:#0F172A}
+.auth-sub{font-size:13px;color:#64748B;margin-top:6px;margin-bottom:28px}
+.form-fields{display:flex;flex-direction:column;gap:16px}
+.field-group{display:flex;flex-direction:column}
+.field-note{font-size:11px;color:#94A3B8;margin-top:4px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-actions{margin-top:8px;display:flex;flex-direction:column;gap:12px}
+.terms-note{font-size:11px;color:#94A3B8;text-align:center;line-height:1.5}
+.terms-note a{color:#00AFA8}
+.signin-line{margin-top:20px;text-align:center;font-size:13px;color:#64748B}
+.signin-line a{color:#00AFA8}
+</style>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+
+    <img class="auth-logo" src="../assets/logos/ujednano_horizontal_logo_white_background.png" alt="Ujednano"/>
+    <p class="auth-portal-label">Tradesperson portal</p>
+
+    <p class="auth-title">Create your account</p>
+    <p class="auth-sub">Join Ujednano as a verified tradesperson</p>
+
+    <div class="form-fields">
+
+      <div class="field-group">
+        <label class="form-label">Full name</label>
+        <input class="form-input" type="text" placeholder="Jan Novák"/>
+      </div>
+
+      <div class="field-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="jan@example.com"/>
+      </div>
+
+      <div class="field-group">
+        <label class="form-label">Phone number</label>
+        <input class="form-input" type="tel" placeholder="+420 777 000 000"/>
+        <p class="field-note">Used for WhatsApp communication</p>
+      </div>
+
+      <div class="field-group">
+        <label class="form-label">Company / trading name</label>
+        <input class="form-input" type="text" placeholder="Novák Stavby s.r.o."/>
+      </div>
+
+      <div class="form-row">
+        <div class="field-group">
+          <label class="form-label">Trade specialisation</label>
+          <select class="form-input">
+            <option value="" disabled selected>Select trade</option>
+            <option>Zednictví</option>
+            <option>Elektroinstalace</option>
+            <option>Instalatérství</option>
+            <option>Tesařství</option>
+            <option>Malířství</option>
+            <option>Jiné</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="form-label">Region</label>
+          <select class="form-input">
+            <option value="" disabled selected>Select region</option>
+            <option>Praha</option>
+            <option>Středočeský</option>
+            <option>Jihočeský</option>
+            <option>Plzeňský</option>
+            <option>Karlovarský</option>
+            <option>Ústecký</option>
+            <option>Liberecký</option>
+            <option>Královéhradecký</option>
+            <option>Pardubický</option>
+            <option>Vysočina</option>
+            <option>Jihomoravský</option>
+            <option>Olomoucký</option>
+            <option>Zlínský</option>
+            <option>Moravskoslezský</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••"/>
+      </div>
+
+      <div class="field-group">
+        <label class="form-label">Confirm password</label>
+        <input class="form-input" type="password" placeholder="••••••••"/>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-primary">Create account</button>
+        <p class="terms-note">By registering you agree to the <a href="#">Terms of Service</a></p>
+      </div>
+
+    </div>
+
+    <p class="signin-line">Already have an account? <a href="./08-login.html">Sign in</a></p>
+
+  </div>
+</div>
+</body>
+</html>
