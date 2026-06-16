@@ -203,6 +203,72 @@
 
       </div>
 
+      <!-- Confidence calibration card -->
+      <div style="background:#fff;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden;margin-bottom:20px">
+        <div style="padding:16px 20px;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <span style="font-size:15px;font-weight:600;color:#0F172A">Confidence calibration</span>
+            <div style="font-size:11.5px;color:#94A3B8;margin-top:3px">Prompt Pack v1 &middot; claude-sonnet-4-6 &middot; Based on 186 operator-verified extractions</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="status-dot" style="background:#10B981"></span>
+            <span style="font-size:13px;font-weight:500;color:#059669">Well-calibrated</span>
+          </div>
+        </div>
+
+        <!-- Calibration table -->
+        <div style="padding:0 20px">
+
+          <!-- Header row -->
+          <div style="display:grid;grid-template-columns:140px 1fr 1fr 120px;gap:12px;padding:10px 0;border-bottom:1px solid #F1F5F9">
+            <div style="font-size:10.5px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase">Confidence range</div>
+            <div style="font-size:10.5px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase">Declared avg</div>
+            <div style="font-size:10.5px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase">Measured accuracy</div>
+            <div style="font-size:10.5px;font-weight:600;color:#94A3B8;letter-spacing:0.06em;text-transform:uppercase">Drift</div>
+          </div>
+
+          <!-- Row 1 -->
+          <div style="display:grid;grid-template-columns:140px 1fr 1fr 120px;gap:12px;padding:11px 0;border-bottom:1px solid #F1F5F9;align-items:center">
+            <div style="font-size:13px;color:#0F172A;font-variant-numeric:tabular-nums;font-weight:500">0.70 – 0.80</div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">75.0% <span style="font-size:11px;color:#94A3B8">(9 samples)</span></div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">
+              <span style="font-weight:600;color:#0F172A">77.3%</span>
+              <div style="margin-top:4px;height:4px;background:#E2E8F0;border-radius:2px;width:100px"><div style="width:77.3%;height:4px;background:#059669;border-radius:2px"></div></div>
+            </div>
+            <div style="font-size:13px;color:#059669;font-variant-numeric:tabular-nums;font-weight:500">+2.3pp</div>
+          </div>
+
+          <!-- Row 2 -->
+          <div style="display:grid;grid-template-columns:140px 1fr 1fr 120px;gap:12px;padding:11px 0;border-bottom:1px solid #F1F5F9;align-items:center">
+            <div style="font-size:13px;color:#0F172A;font-variant-numeric:tabular-nums;font-weight:500">0.80 – 0.90</div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">85.0% <span style="font-size:11px;color:#94A3B8">(64 samples)</span></div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">
+              <span style="font-weight:600;color:#0F172A">88.1%</span>
+              <div style="margin-top:4px;height:4px;background:#E2E8F0;border-radius:2px;width:100px"><div style="width:88.1%;height:4px;background:#059669;border-radius:2px"></div></div>
+            </div>
+            <div style="font-size:13px;color:#059669;font-variant-numeric:tabular-nums;font-weight:500">+3.1pp</div>
+          </div>
+
+          <!-- Row 3 -->
+          <div style="display:grid;grid-template-columns:140px 1fr 1fr 120px;gap:12px;padding:11px 0;align-items:center">
+            <div style="font-size:13px;color:#0F172A;font-variant-numeric:tabular-nums;font-weight:500">0.90 – 1.00</div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">94.3% <span style="font-size:11px;color:#94A3B8">(113 samples)</span></div>
+            <div style="font-size:13px;color:#475569;font-variant-numeric:tabular-nums">
+              <span style="font-weight:600;color:#0F172A">93.4%</span>
+              <div style="margin-top:4px;height:4px;background:#E2E8F0;border-radius:2px;width:100px"><div style="width:93.4%;height:4px;background:#059669;border-radius:2px"></div></div>
+            </div>
+            <div style="font-size:13px;color:#D97706;font-variant-numeric:tabular-nums;font-weight:500">−0.9pp</div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div style="padding:12px 20px;background:#F8FAFC;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:11.5px;color:#94A3B8">Max drift across all buckets: <strong style="color:#0F172A">3.1pp</strong> &mdash; within the 5pp alert threshold</span>
+          <span style="font-size:11.5px;color:#94A3B8">Last calibration check: 14 Jun 2026</span>
+        </div>
+      </div>
+
       <!-- Service status card -->
       <div style="background:#fff;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden">
         <div style="padding:16px 20px;border-bottom:1px solid #E2E8F0">
